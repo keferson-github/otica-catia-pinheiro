@@ -1,3 +1,39 @@
+/* Sombra inset nas bordas dos cards durante hover/scale */
+.service-card-beige:hover,
+.service-card-silver:hover {
+  box-shadow: 0 0 0 6px hsla(28, 47%, 76%, 0.25), 0 30px 60px -15px hsla(28, 47%, 76%, 0.18), inset 0 0 16px 2px #23232333;
+}
+/* Destaca mais as bordas dos cards no hover/scale */
+.service-card-beige:hover,
+.service-card-silver:hover {
+  border-width: 3px;
+  border-color: hsla(28, 47%, 76%, 1) !important;
+  box-shadow: 0 0 0 6px hsla(28, 47%, 76%, 0.25), 0 30px 60px -15px hsla(28, 47%, 76%, 0.18);
+}
+/* Títulos e subtítulos dos cards sempre destacados em preto, inclusive no hover */
+.highlight-beige {
+  color: hsla(28, 47%, 76%, 1) !important;
+  font-weight: 700;
+}
+.service-card-beige h3,
+.service-card-beige:hover h3,
+.service-card-silver h3,
+.service-card-silver:hover h3,
+.service-card-beige h3 span,
+.service-card-beige:hover h3 span,
+.service-card-silver h3 span,
+.service-card-silver:hover h3 span {
+  color: hsl(var(--primary)) !important;
+  font-weight: 800;
+  text-shadow: 0 2px 8px hsla(0,0%,0%,0.08);
+}
+/* Títulos dos cards sempre em destaque */
+.service-card-beige h3,
+.service-card-silver h3 {
+  color: hsl(var(--primary));
+  font-weight: 800;
+  text-shadow: 0 2px 8px hsla(0,0%,0%,0.08);
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,24 +59,25 @@ All colors MUST be HSL for optimal theming.
     --primary-foreground: 0 0% 100%;
     --primary-light: 0 0% 20%;
     
-    /* Gold - Main container color */
-    --accent-gold: 42 87% 55%;
-    --accent-gold-dark: 42 75% 45%;
-    --accent-gold-light: 42 95% 65%;
+    /* Beige - Main container color */
+    --accent-gold: 28 25% 92%;
+    --accent-gold-dark: 28 30% 85%;
+    --accent-gold-light: 28 20% 95%;
     
     /* Silver - Details and secondary elements */
     --accent-silver: 220 8% 75%;
     --accent-silver-dark: 220 12% 60%;
     --accent-silver-light: 220 6% 85%;
     
-    /* Remove yellow accent - only using gold/silver/black/white */
-    --accent-yellow: 42 87% 55%;
-    --accent-yellow-dark: 42 75% 45%;
+    /* Additional beige shades for depth */
+    --accent-beige: 28 25% 92%;
+    --accent-beige-dark: 28 30% 82%;
+    --accent-beige-light: 28 20% 97%;
     
-    /* Soft beige secondary - warmth and approachability */
-    --secondary: 28 25% 92%;
+    /* Secondary colors */
+    --secondary: var(--accent-beige);
     --secondary-foreground: 220 13% 18%;
-    --secondary-dark: 28 20% 85%;
+    --secondary-dark: var(--accent-beige-dark);
 
     --muted: 220 8% 96%;
     --muted-foreground: 0 0% 40%;
@@ -63,11 +100,11 @@ All colors MUST be HSL for optimal theming.
   /* Modern gradients inspired by Instituto Ponto Azul */
     --gradient-hero: linear-gradient(135deg, hsl(var(--hero-bg)), hsl(var(--hero-overlay)));
     --gradient-hero-diagonal: linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(220 15% 12%) 50%, hsl(220 20% 8%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--accent-gold)), hsl(var(--accent-gold-dark)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent-beige)), hsl(var(--accent-beige-dark)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
-    --gradient-premium: linear-gradient(135deg, hsl(var(--accent-blue)), hsl(var(--accent-blue-dark)));
-    --gradient-border: linear-gradient(135deg, hsl(var(--accent-gold)), hsl(var(--accent-blue-light)));
-    --gradient-glow: linear-gradient(135deg, hsl(var(--accent-gold) / 0.3), hsl(var(--accent-blue) / 0.3));
+    --gradient-premium: linear-gradient(135deg, hsl(var(--accent-beige)), hsl(var(--accent-beige-dark)));
+    --gradient-border: linear-gradient(135deg, hsl(var(--accent-beige)), hsl(var(--accent-beige-light)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--accent-beige) / 0.3), hsl(var(--accent-beige-light) / 0.3));
     
     /* Card gradients using custom dark color and IPA-inspired themes */
     --gradient-card-dark: #282C34;
@@ -77,12 +114,12 @@ All colors MUST be HSL for optimal theming.
     --gradient-ipa-orange: linear-gradient(135deg, #EA580C, #FB923C);
     --gradient-soft-light: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
     
-    /* Enhanced shadows for gold/silver design */
+    /* Enhanced shadows for beige/silver design */
     --shadow-elegant: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-glow-gold: 0 0 40px hsl(var(--accent-gold) / 0.4);
+    --shadow-glow-beige: 0 0 40px hsl(var(--accent-beige) / 0.4);
     --shadow-glow-silver: 0 0 30px hsl(var(--accent-silver) / 0.3);
-    --shadow-premium-gold: 0 25px 50px -12px hsl(var(--accent-gold) / 0.25), 0 0 30px hsl(var(--accent-gold) / 0.2);
+    --shadow-premium-beige: 0 25px 50px -12px hsl(var(--accent-beige) / 0.25), 0 0 30px hsl(var(--accent-beige) / 0.2);
     --shadow-floating: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --shadow-card: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     
@@ -504,34 +541,34 @@ All colors MUST be HSL for optimal theming.
     padding: 2.5rem;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: visible;
-    box-shadow: var(--shadow-premium-gold);
+    box-shadow: var(--shadow-premium-beige);
     border: 2px solid hsl(var(--accent-gold));
     background: #fff;
     z-index: 1;
   }
   
-  .service-card-gold::before {
+  .service-card-beige::before {
     content: '';
     position: absolute;
     inset: -4px;
     border-radius: 2.2rem;
     pointer-events: none;
     z-index: 2;
-    background: linear-gradient(120deg, transparent 40%, hsl(var(--accent-gold-light) / 0.18) 50%, transparent 60%);
+    background: linear-gradient(120deg, transparent 40%, hsl(var(--accent-beige-light) / 0.18) 50%, transparent 60%);
     opacity: 0.7;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .service-card-gold::after {
+  .service-card-beige::after {
     content: '';
     position: absolute;
     inset: -2px;
     background: linear-gradient(
       120deg,
       transparent,
-      hsl(var(--accent-gold-light) / 0.2),
-      hsl(var(--accent-gold) / 0.3),
-      hsl(var(--accent-gold-dark) / 0.2),
+      hsl(var(--accent-beige-light) / 0.2),
+      hsl(var(--accent-beige) / 0.3),
+      hsl(var(--accent-beige-dark) / 0.2),
       transparent
     );
     opacity: 0;
@@ -540,19 +577,22 @@ All colors MUST be HSL for optimal theming.
     border-radius: 2rem;
   }
   
-  .service-card-gold:hover::before {
+  .service-card-beige:hover::before {
     opacity: 1;
   }
-  
-  .service-card-gold:hover::after {
+  .service-card-beige:hover::after {
     opacity: 1;
     animation: border-flow 3s linear infinite;
   }
+  /* Remove overlay no hover */
+  .service-card-beige:hover .absolute.inset-0.rounded-3xl.overflow-hidden {
+    opacity: 1 !important;
+  }
   
-  .service-card-gold:hover {
+  .service-card-beige:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-glow-gold), 0 30px 60px -15px hsl(var(--accent-gold) / 0.3);
-    border-color: hsl(var(--accent-gold-light));
+    box-shadow: var(--shadow-glow-beige), 0 30px 60px -15px hsl(var(--accent-beige) / 0.3);
+    border-color: hsl(var(--accent-beige-light));
     background: #fff;
   }
   
@@ -563,7 +603,7 @@ All colors MUST be HSL for optimal theming.
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: visible;
     box-shadow: 8px 8px 24px hsl(var(--accent-silver) / 0.13), -8px -8px 24px #fff;
-    border: 1.5px solid hsl(var(--accent-silver-light));
+  border: 1px solid rgba(35, 35, 35, 0.3); /* Bordas em dark-gray com baixa opacidade por padrão */
     color: hsl(var(--primary));
     background: #fff;
     z-index: 1;
@@ -636,12 +676,29 @@ All colors MUST be HSL for optimal theming.
 
   .service-card-silver:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 0 24px 8px hsl(var(--accent-silver-light) / 0.18), 0 0 0 10px #fff inset;
-    border-color: hsl(var(--accent-silver-light));
+    box-shadow: 0 0 24px 8px #23232333, 0 0 0 10px #fff inset, inset 0 0 16px 2px #23232333;
+  border: 1px solid #232323; /* Borda dark-gray plena no hover */
     background: #fff;
   }
+/* Botão do card prata sempre preto */
+.service-card-silver .btn-premium,
+.service-card-silver:hover .btn-premium {
+  color: hsl(var(--primary)) !important;
+  background: hsl(var(--background)) !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
   
-  .icon-glow-gold {
+  /* Garante que o botão mantenha cor preta no hover do card */
+    /* Botões dos cards da seção Nossos Serviços sempre pretos */
+    .service-card-gold .btn-premium,
+    .service-card-gold:hover .btn-premium,
+    .service-card-silver .btn-premium,
+    .service-card-silver:hover .btn-premium {
+      color: hsl(var(--primary));
+      background: hsl(var(--background));
+    }
     filter: drop-shadow(0 0 10px hsl(var(--accent-gold) / 0.6));
     transition: filter 0.3s ease;
   }
@@ -684,6 +741,8 @@ All colors MUST be HSL for optimal theming.
     opacity: 1;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  .service-card-silver:hover {
     transform: translateY(-12px) scale(1.02);
     border-color: hsl(var(--accent-silver));
     box-shadow: 
@@ -693,16 +752,16 @@ All colors MUST be HSL for optimal theming.
     animation: neon-pulse-silver 2s ease-in-out infinite;
   }
 
-  .service-card-gold {
+  .service-card-beige {
     position: relative;
-    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--accent-gold)/0.05));
-    border: 3px solid hsl(var(--accent-gold)/0.4);
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--accent-beige)/0.05));
+    border: 3px solid hsl(var(--accent-beige)/0.4);
     border-radius: 1.5rem;
     padding: 2.5rem;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px -5px hsl(var(--accent-gold)/0.2);
+    box-shadow: 0 10px 30px -5px hsl(var(--accent-beige)/0.2);
   }
 
   .service-card-gold::before {
@@ -720,34 +779,72 @@ All colors MUST be HSL for optimal theming.
     left: 100%;
   }
 
-  .service-card-gold:hover {
+  .service-card-beige:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow:
-      0 0 32px 10px hsl(var(--accent-gold-light) / 0.25),
+      0 0 32px 10px hsl(var(--accent-beige-light) / 0.25),
       0 0 0 12px #fff inset,
-      0 0 24px 8px hsl(var(--accent-gold) / 0.45);
-  /* filter: blur(2.5px); */
-    border-color: hsl(var(--accent-gold-light));
+      0 0 24px 8px hsl(var(--accent-beige) / 0.45);
+    border-color: hsl(var(--accent-beige-light));
     background: linear-gradient(
       165deg,
-      hsl(var(--accent-gold) / 0.98),
-      hsl(var(--accent-gold-dark) / 0.95) 50%,
-      hsl(var(--accent-gold) / 0.92)
+      hsl(var(--accent-beige) / 0.98),
+      hsl(var(--accent-beige-dark) / 0.95) 50%,
+      hsl(var(--accent-beige) / 0.92)
     );
-    }
+  }
+
+  /* Bordas suaves ao hover/scale para os cards */
+.service-card-silver:hover,
+.service-card-silver:active,
+.service-card-silver:focus {
+  transform: translateY(-12px) scale(1.02);
+  border: 1.5px solid hsl(var(--accent-silver) / 0.7);
+  box-shadow: 0 12px 30px -10px hsl(var(--accent-silver) / 0.25), 0 0 0 4px rgba(255,255,255,0.6) inset;
+}
+
+.service-card-beige:hover,
+.service-card-beige:active,
+.service-card-beige:focus,
+.service-card-gold:hover,
+.service-card-gold:active,
+.service-card-gold:focus {
+  transform: translateY(-8px) scale(1.02);
+  border: 1.5px solid hsla(28, 47%, 76%, 1); /* destaque suave beige/gold */
+  box-shadow: 0 20px 40px -20px hsla(28, 47%, 76%, 0.18), 0 0 0 6px rgba(255,255,255,0.85) inset;
+}
+
+/* Garante que os botões dos cards mantenham a cor preta mesmo no hover */
+  .service-card-gold .btn-premium,
+  .service-card-gold:hover .btn-premium,
+  .service-card-silver .btn-premium,
+  .service-card-silver:hover .btn-premium,
+  .service-card-gold .btn-premium:hover,
+  .service-card-silver .btn-premium:hover {
+    color: hsl(var(--primary)) !important;
+    background: hsl(var(--background)) !important;
+  }
+
+  /* Garante que o texto e ícones do botão também permaneçam pretos */
+  .service-card-gold .btn-premium *,
+  .service-card-silver .btn-premium *,
+  .service-card-gold:hover .btn-premium *,
+  .service-card-silver:hover .btn-premium * {
+    color: hsl(var(--primary)) !important;
+  }
   .icon-glow-silver {
     filter: drop-shadow(0 0 8px hsl(var(--accent-silver)/0.6));
     transition: all 0.3s ease;
   }
 
-  .icon-glow-gold {
-    filter: drop-shadow(0 0 12px hsl(var(--accent-gold)/0.8));
+  .icon-glow-beige {
+    filter: drop-shadow(0 0 12px hsl(var(--accent-beige)/0.8));
     transition: all 0.3s ease;
   }
 
   /* Modern glassmorphism background patterns */
   .bg-pattern-dots {
-    background-image: radial-gradient(circle at 1px 1px, hsl(var(--accent-yellow)/0.1) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, hsl(var(--accent-beige)/0.1) 1px, transparent 0);
     background-size: 20px 20px;
   }
 
@@ -1042,3 +1139,32 @@ All colors MUST be HSL for optimal theming.
       background-position: 0% 50%;
     }
   }
+/* Forçar botão do card prata a aparecer igual ao Premium durante hover no card (sem alterar o design do botão) */
+.service-card-silver:hover a[href*="wa.me"] {
+  background: hsl(var(--primary)) !important; /* mesmo fundo do botão premium */
+  color: hsl(var(--primary-foreground)) !important; /* mesma cor do texto do botão premium */
+  opacity: 1 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.service-card-silver:hover a[href*="wa.me"] * {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+/* Bordas internas para os wrappers de conteúdo ao hover/scale */
+.service-card-silver:hover .service-card-silver-content,
+.service-card-silver:active .service-card-silver-content,
+.service-card-silver:focus .service-card-silver-content {
+  border: 1.5px solid hsl(var(--accent-silver-light) / 0.9);
+  box-shadow: 0 8px 20px -8px hsl(var(--accent-silver) / 0.2), inset 0 0 8px rgba(255,255,255,0.6);
+}
+
+.service-card-beige:hover .premium-inner,
+.service-card-beige:active .premium-inner,
+.service-card-beige:focus .premium-inner,
+.service-card-gold:hover .premium-inner,
+.service-card-gold:active .premium-inner,
+.service-card-gold:focus .premium-inner {
+  border: 1.5px solid hsla(28, 47%, 76%, 1);
+  box-shadow: 0 18px 36px -22px hsla(28, 47%, 76%, 0.18), inset 0 0 8px rgba(255,255,255,0.85);
+}

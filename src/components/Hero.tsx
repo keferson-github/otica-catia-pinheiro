@@ -53,7 +53,7 @@ const Hero = () => {
                 <span className="block">MUNDO ATRAVÉS</span>
                 <span className="block">DE UMA</span>
                 <span className="bg-gradient-to-r from-accent-gold to-accent-gold-dark bg-clip-text text-transparent block">
-                  NOVA LENTE
+                  <span className="highlight-beige">NOVA LENTE</span>
                 </span>
               </h1>
               

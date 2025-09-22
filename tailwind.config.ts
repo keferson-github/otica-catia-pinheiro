@@ -1,8 +1,9 @@
 import type { Config } from "tailwindcss";
+import animatePlugin from "tailwindcss-animate";
 
-export default {
-  darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+const config: Config = {
+  darkMode: 'class',
+  content: ["./index.html", "./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -29,13 +30,10 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
           dark: "hsl(var(--secondary-dark))",
         },
-        "accent-gold": {
-          DEFAULT: "hsl(var(--accent-gold))",
-          dark: "hsl(var(--accent-gold-dark))",
-        },
-        "accent-yellow": {
-          DEFAULT: "hsl(var(--accent-yellow))",
-          dark: "hsl(var(--accent-yellow-dark))",
+        "accent-beige": {
+          DEFAULT: "hsl(var(--accent-beige))",
+          dark: "hsl(var(--accent-beige-dark))",
+          light: "hsl(var(--accent-beige-light))",
         },
         "accent-silver": {
           DEFAULT: "hsl(var(--accent-silver))",
@@ -141,5 +139,7 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  plugins: [animatePlugin],
+};
+
+export default config;
