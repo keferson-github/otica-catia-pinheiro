@@ -226,7 +226,7 @@ const ServiceCards = () => {
                     variants={itemVariants}
                   >
                     Atendimento Presencial
-                    <span className="modern-card-subtitle block">Consultoria Gratuita</span>
+                    <span className="modern-card-subtitle block">Agendamento Gratuito</span>
                   </motion.h3>
                   <motion.p 
                     className="modern-card-description"
