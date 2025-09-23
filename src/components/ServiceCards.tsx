@@ -41,7 +41,7 @@ const ServiceCards = () => {
         </div>
         
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto" onMouseMove={handleMouseMove}>
+        <div className="grid md:grid-cols-2 gap-3 sm:gap-6 md:gap-12 max-w-6xl mx-auto" onMouseMove={handleMouseMove}>
           {/* Service 1 - Silver Card with Enhanced Background */}
           <div className="group relative">
             {/* Floating background elements */}
@@ -85,7 +85,7 @@ const ServiceCards = () => {
                 
                 {/* CTA with elegant hover effect */}
                 <a href="https://wa.me/5511997712138?text=Olá! Gostaria de solicitar óculos através da consultoria de visagismo." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-background font-semibold rounded-lg group-hover:bg-accent-silver-dark group-hover:gap-3 transition-all duration-300">
-                  <span>Agendar Atendimento</span>
+                  <span>Atendimento Loja</span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </div>
