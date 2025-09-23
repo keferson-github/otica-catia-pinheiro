@@ -132,7 +132,7 @@ const ServiceCards = () => {
                 
                 {/* Premium CTA with advanced effects */}
                 <a href="https://wa.me/5511997712138?text=Olá! Gostaria de agendar uma consultoria de visagismo óptico." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-background font-semibold rounded-lg group-hover:bg-accent-gold-dark group-hover:gap-4 group-hover:shadow-xl group-hover:shadow-accent-gold/30 transition-all duration-300">
-                  <span>Agendar Consultoria Premium</span>
+                  <span>Agendar Consultoria</span>
                   <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-300" />
                 </a>
               </div>
