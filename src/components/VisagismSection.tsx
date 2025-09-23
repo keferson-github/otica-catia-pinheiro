@@ -22,21 +22,21 @@ const VisagismSection = () => {
   ];
 
   return (
-    <section id="visagismo" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center space-y-6 mb-16">
-          <h2 className="section-heading">
+    <section id="visagismo" className="py-12 sm:py-16 md:py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
             O que é o Visagismo Óptico?
           </h2>
-          <div className="w-20 h-1 bg-accent-blue rounded-full mx-auto"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <div className="w-16 sm:w-20 h-1 bg-accent-blue rounded-full mx-auto"></div>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             O visagismo óptico é um conceito que considera suas características faciais, 
             estilo de vida e preferências estéticas para recomendar armações que harmonizem 
             com seu rosto e transmitam a imagem que você deseja.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, index) => (
             <div key={index} className="elegant-card text-center group hover:scale-105">
               <div className="flex justify-center mb-6">

@@ -12,36 +12,36 @@ const ServiceCards = () => {
       (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
     });
   };
-  return <section id="servicos" className="py-24 bg-background relative overflow-hidden">
+  return <section id="servicos" className="py-16 sm:py-20 md:py-24 bg-background relative overflow-hidden">
       {/* Subtle background elements in gold and silver */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent-beige/20 rounded-full blur-3xl animate-float-up"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent-silver/20 rounded-full blur-3xl animate-float-up" style={{
+        <div className="absolute top-20 left-10 w-24 sm:w-32 h-24 sm:h-32 bg-accent-beige/20 rounded-full blur-3xl animate-float-up"></div>
+        <div className="absolute bottom-20 right-10 w-32 sm:w-40 h-32 sm:h-40 bg-accent-silver/20 rounded-full blur-3xl animate-float-up" style={{
         animationDelay: '1s'
       }}></div>
-        <div className="absolute top-1/2 left-1/2 w-60 h-60 bg-accent-beige/10 rounded-full blur-3xl animate-float-up" style={{
+        <div className="absolute top-1/2 left-1/2 w-48 sm:w-60 h-48 sm:h-60 bg-accent-beige/10 rounded-full blur-3xl animate-float-up" style={{
         animationDelay: '2s'
       }}></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-accent-beige/15 text-primary text-sm font-semibold rounded-full mb-6 border border-accent-beige/30">
-            <Eye size={18} className="text-accent-beige" />
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-accent-beige/15 text-primary text-xs sm:text-sm font-semibold rounded-full mb-4 sm:mb-6 border border-accent-beige/30">
+            <Eye size={16} className="text-accent-beige" />
             Nossos Serviços
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
             Transforme sua
             <span className="block highlight-beige">imagem visual</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Oferecemos soluções personalizadas para que você encontre os óculos perfeitos
           </p>
         </div>
         
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto" onMouseMove={handleMouseMove}>
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto" onMouseMove={handleMouseMove}>
           {/* Service 1 - Silver Card with Enhanced Background */}
           <div className="group relative">
             {/* Floating background elements */}

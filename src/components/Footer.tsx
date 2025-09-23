@@ -6,33 +6,33 @@ const Footer = () => {
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
       
-      <div className="container mx-auto px-6 py-16 relative">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative">
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-12 mb-12">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Brand Section */}
           <div className="text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-light text-primary mb-3">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-light text-primary mb-2 sm:mb-3">
               Ótica Cátia Pinheiro
             </h3>
-            <p className="text-muted-foreground font-light tracking-wide">
+            <p className="text-sm sm:text-base text-muted-foreground font-light tracking-wide">
               Visagismo Óptico Especializado
             </p>
           </div>
           
           {/* Contact Info */}
-          <div className="text-center md:text-right space-y-3">
-            <p className="text-muted-foreground text-sm font-light">
+          <div className="text-center md:text-right space-y-2 sm:space-y-3">
+            <p className="text-xs sm:text-sm text-muted-foreground font-light">
               Rua João Dartora, 321 - Centro<br />
               Caieiras - SP
             </p>
-            <p className="text-primary font-medium text-lg">
+            <p className="text-primary font-medium text-base sm:text-lg">
               (11) 99731-2138
             </p>
           </div>
         </div>
         
         {/* Social Links */}
-        <div className="flex justify-center gap-6 mb-12">
+        <div className="flex justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
           <a 
             href="#" 
             className="group w-14 h-14 bg-card/50 hover:bg-primary border border-border/30 hover:border-primary rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-lg hover:shadow-primary/20" 
