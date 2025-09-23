@@ -699,6 +699,9 @@ All colors MUST be HSL for optimal theming.
       color: hsl(var(--primary));
       background: hsl(var(--background));
     }
+  }
+  
+  .icon-glow-gold {
     filter: drop-shadow(0 0 10px hsl(var(--accent-gold) / 0.6));
     transition: filter 0.3s ease;
   }

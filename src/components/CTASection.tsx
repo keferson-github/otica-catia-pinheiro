@@ -1,4 +1,4 @@
-import { Mail, ArrowRight, CheckCircle, MessageSquare, Gift } from "lucide-react";
+import { ArrowRight, CheckCircle, Mail, MessageSquare, Gift } from "lucide-react";
 import newsletterBg from "@/assets/newsletter-dark-bg.jpg";
 
 const CTASection = () => {

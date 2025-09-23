@@ -12,6 +12,9 @@ declare module "lucide-react" {
   export const Search: SVGIcon;
   export const Palette: SVGIcon;
   export const CheckCircle: SVGIcon;
+  export const Mail: SVGIcon;
+  export const MessageSquare: SVGIcon;
+  export const Gift: SVGIcon;
   // Fallback for any other icon imports
   const icons: { [key: string]: SVGIcon };
   export default icons;
