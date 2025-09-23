@@ -63,9 +63,7 @@ const Header = () => {
           
           {/* Logo Minimalista */}
           <div className="flex items-center">
-            <span className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-lg'
-            }`}>
+            <span className="text-2xl font-bold transition-colors duration-300 text-gray-900 drop-shadow-sm">
               CAP
             </span>
           </div>
@@ -88,9 +86,7 @@ const Header = () => {
           {/* Menu Mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white drop-shadow-md'
-            }`}
+            className="md:hidden p-2 transition-colors duration-300 text-gray-900 bg-white/20 backdrop-blur-sm rounded-lg border border-gray-300/30 shadow-sm hover:bg-white/30"
             aria-label="Menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -99,17 +95,21 @@ const Header = () => {
 
         {/* Navegação Mobile */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/10 backdrop-blur-md border-t border-white/20 shadow-xl">
-            <div className="px-6 py-6 space-y-4">
-              {NAVIGATION_CONFIG.map((item) => (
+          <div className="md:hidden bg-white/10 backdrop-blur-xl border-t border-white/30 shadow-xl rounded-b-2xl mx-4 mb-4 animate-in slide-in-from-top-5 duration-300 ease-out">
+            <div className="px-6 py-6 space-y-2">
+              {NAVIGATION_CONFIG.map((item, index) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`block w-full text-left py-3 px-4 text-base font-semibold transition-all duration-300 text-white hover:text-gray-200 drop-shadow-md group relative`}
+                  className={`block w-full text-center py-3 px-4 text-base font-semibold transition-all duration-300 text-gray-900 hover:text-gray-700 hover:bg-white/20 rounded-lg group relative animate-in slide-in-from-top-3 ease-out backdrop-blur-sm`}
+                  style={{ 
+                    animationDelay: `${index * 50}ms`,
+                    animationFillMode: 'both'
+                  }}
                 >
                   {item.name}
                   {/* Sublinhado suave no hover - mobile */}
-                  <span className="absolute bottom-2 left-4 w-0 h-0.5 bg-white rounded-full transition-all duration-300 group-hover:w-6"></span>
+                  <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gray-700 rounded-full transition-all duration-300 group-hover:w-8"></span>
                 </button>
               ))}
             </div>
