@@ -19,14 +19,14 @@ const Footer = () => {
   // Hook de scroll trigger
   const footerTrigger = useScrollTrigger({ threshold: 0.2 });
 
-  // Variantes de animação
+  // Variantes de animação - REDUZIDAS
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.08, // Reduzido de 0.15 para 0.08
+        delayChildren: 0.05 // Reduzido de 0.1 para 0.05
       }
     }
   };
@@ -34,16 +34,16 @@ const Footer = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 30
+      y: 15 // Reduzido de 30 para 15
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
         type: "spring" as const,
-        stiffness: 100,
-        damping: 15,
-        duration: 0.6
+        stiffness: 120, // Aumentado de 100 para 120
+        damping: 18, // Aumentado de 15 para 18
+        duration: 0.4 // Reduzido de 0.6 para 0.4
       }
     }
   };
@@ -51,8 +51,8 @@ const Footer = () => {
   const socialVariants = {
     hidden: { 
       opacity: 0, 
-      scale: 0.8,
-      y: 20
+      scale: 0.9, // Reduzido de 0.8 para 0.9
+      y: 10 // Reduzido de 20 para 10
     },
     visible: { 
       opacity: 1, 
@@ -60,9 +60,9 @@ const Footer = () => {
       y: 0,
       transition: {
         type: "spring" as const,
-        stiffness: 150,
-        damping: 20,
-        duration: 0.5
+        stiffness: 160, // Aumentado de 150 para 160
+        damping: 22, // Aumentado de 20 para 22
+        duration: 0.4 // Reduzido de 0.5 para 0.4
       }
     }
   };
@@ -126,7 +126,7 @@ const Footer = () => {
               className="text-primary font-medium text-base sm:text-lg"
               variants={itemVariants}
             >
-              (11) 99731-2138
+              (11) 99771-2138
             </motion.p>
           </motion.div>
         </motion.div>
@@ -181,7 +181,7 @@ const Footer = () => {
             className="text-muted-foreground/70 text-xs mb-2"
             variants={itemVariants}
           >
-            CNPJ: 00.000.000/0001-00 | CRO 00000
+            CNPJ: 12.986.446/0001-16
           </motion.p>
           <motion.p 
             className="text-muted-foreground/70 text-xs"

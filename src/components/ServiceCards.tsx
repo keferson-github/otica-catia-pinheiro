@@ -19,42 +19,42 @@ const ServiceCards = () => {
   const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.95
+      y: 25, // Reduzido de 60 para 25
+      scale: 0.98 // Reduzido de 0.95 para 0.98
     },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.4, // Reduzido de 0.6 para 0.4
         ease: "easeOut",
-        staggerChildren: 0.1
+        staggerChildren: 0.08 // Reduzido de 0.1 para 0.08
       }
     }
   };
 
-  // Variantes para elementos internos dos cards
+  // Variantes para elementos internos dos cards - REDUZIDAS
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 }, // Reduzido de y: 20 para y: 10
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.3, // Reduzido de 0.4 para 0.3
         ease: "easeOut"
       }
     }
   };
 
-  // Variantes para os bullets/features
+  // Variantes para os bullets/features - REDUZIDAS
   const bulletVariants: Variants = {
-    hidden: { opacity: 0, scale: 0 },
+    hidden: { opacity: 0, scale: 0.8 }, // Mudado de scale: 0 para scale: 0.8
     visible: { 
       opacity: 1, 
       scale: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.25, // Reduzido de 0.3 para 0.25
         ease: "backOut"
       }
     }
@@ -108,10 +108,10 @@ const ServiceCards = () => {
         {/* Header */}
         <motion.div 
           className="text-center mb-12 sm:mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }} // Reduzido de y: 30 para y: 15
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.25, ease: "easeOut" }} // Reduzido de 0.3 para 0.25
         >
           <motion.div 
             className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-accent-beige/15 text-primary text-xs sm:text-sm font-semibold rounded-full mb-4 sm:mb-6 border border-accent-beige/30"
@@ -154,7 +154,7 @@ const ServiceCards = () => {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.2
+                staggerChildren: 0.12 // Reduzido de 0.2 para 0.12
               }
             }
           }}

@@ -15,25 +15,25 @@ const ProcessSection = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
-  // Variantes de animação
+  // Variantes de animação - REDUZIDAS
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+        staggerChildren: 0.1, // Reduzido de 0.3 para 0.1
+        delayChildren: 0.1    // Reduzido de 0.2 para 0.1
       }
     }
   };
 
   const stepVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 20 }, // Reduzido de y: 60 para y: 20
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.4,        // Reduzido de 0.8 para 0.4
         ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number]
       }
     }
@@ -82,9 +82,9 @@ const ProcessSection = () => {
         <motion.div 
           className="text-center space-y-6 mb-16"
           style={{ y: contentY }}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}  // Reduzido de y: 50 para y: 20
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}  // Reduzido de 0.8 para 0.4
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-heading text-primary">
@@ -113,8 +113,8 @@ const ProcessSection = () => {
               <motion.div 
                 className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}
                 whileInView={{ opacity: 1, x: 0 }}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}  // Reduzido de -50/50 para -20/20
+                transition={{ duration: 0.4, delay: 0.1 }}  // Reduzido duration de 0.8 para 0.4 e delay de 0.2 para 0.1
                 viewport={{ once: true }}
               >
                 <div className="flex items-center space-x-4">
@@ -139,8 +139,8 @@ const ProcessSection = () => {
                <motion.div 
                  className={`flex justify-center ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                  whileInView={{ opacity: 1, scale: 1 }}
-                 initial={{ opacity: 0, scale: 0.8 }}
-                 transition={{ duration: 0.8, delay: 0.4 }}
+                 initial={{ opacity: 0, scale: 0.9 }}  // Reduzido de scale: 0.8 para scale: 0.9
+                 transition={{ duration: 0.4, delay: 0.2 }}  // Reduzido duration de 0.8 para 0.4 e delay de 0.4 para 0.2
                  viewport={{ once: true }}
                >
                  {step.image ? (
