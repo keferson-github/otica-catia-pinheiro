@@ -1,3 +1,5 @@
+@import url('./animations.css');
+
 /* Sombra inset nas bordas dos cards durante hover/scale */
 .service-card-beige:hover,
 .service-card-silver:hover {
@@ -27,14 +29,6 @@
   font-weight: 800;
   text-shadow: 0 2px 8px hsla(0,0%,0%,0.08);
 }
-/* Títulos dos cards sempre em destaque */
-.service-card-beige h3,
-.service-card-silver h3 {
-  color: hsl(var(--primary));
-  font-weight: 800;
-  text-shadow: 0 2px 8px hsla(0,0%,0%,0.08);
-}
-@import url('./animations.css');
 
 @tailwind base;
 @tailwind components;
@@ -43,6 +37,14 @@
 /* Ótica Cátia Pinheiro - Sophisticated Design System
 All colors MUST be HSL for optimal theming.
 */
+
+/* Títulos dos cards sempre em destaque */
+.service-card-beige h3,
+.service-card-silver h3 {
+  color: hsl(var(--primary));
+  font-weight: 800;
+  text-shadow: 0 2px 8px hsla(0,0%,0%,0.08);
+}
 
 @layer base {
   :root {

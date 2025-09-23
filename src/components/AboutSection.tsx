@@ -1,85 +1,188 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import consultationProcess from "@/assets/consultation-process.jpg";
 import { useCountUpOnView } from "@/hooks/use-count-up";
+import { useOptimizedVariants, useReducedMotion } from "@/hooks/useOptimizedAnimation";
+import { useScrollTrigger } from "@/hooks/useScrollTrigger";
 
 const AboutSection = () => {
-  // Configuração das animações de contagem
-  const yearsCounter = useCountUpOnView({
-    end: 15,
-    duration: 2500,
-    suffix: '+',
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
   });
 
-  const clientsCounter = useCountUpOnView({
-    end: 1000,
-    duration: 3000,
-    suffix: '+',
-    useGrouping: true,
+  // Hooks de otimização
+  const { shouldUseComplexAnimations } = useOptimizedVariants();
+  const prefersReducedMotion = useReducedMotion();
+  const { elementRef: aboutRef, isVisible } = useScrollTrigger({
+    threshold: 0.1,
+    triggerOnce: true
   });
+
+  // Efeitos parallax otimizados para diferentes elementos
+  const backgroundY = useTransform(scrollYProgress, [0, 1], 
+    shouldUseComplexAnimations ? ["0%", "30%"] : ["0%", "10%"]
+  );
+  const imageY = useTransform(scrollYProgress, [0, 1], 
+    shouldUseComplexAnimations ? ["0%", "-20%"] : ["0%", "-5%"]
+  );
+  const contentY = useTransform(scrollYProgress, [0, 1], 
+    shouldUseComplexAnimations ? ["0%", "10%"] : ["0%", "0%"]
+  );
+
+  // Variantes de animação otimizadas para textos
+  const textVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: prefersReducedMotion ? 0 : i * 0.1,
+        duration: prefersReducedMotion ? 0.3 : 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const
+      }
+    })
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0.1 : 0.2,
+        delayChildren: prefersReducedMotion ? 0.05 : 0.1
+      }
+    }
+  };
+
+  const yearsCounter = useCountUpOnView({ end: 15, duration: 2000 });
+  const clientsCounter = useCountUpOnView({ end: 500, duration: 2500 });
+
   return (
-    <section id="sobre" className="py-12 sm:py-16 md:py-20 diagonal-pattern relative overflow-hidden">
-      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-          {/* Image */}
-          <div className="order-2 lg:order-1 flex justify-center">
-            <div className="relative group">
-              <div className="max-w-md rounded-2xl overflow-hidden shadow-floating transform transition-all duration-500 group-hover:scale-105">
-                 <img 
-                   src={consultationProcess} 
-                   alt="Processo de consulta personalizada com Cátia Pinheiro" 
-                   className="w-full h-auto object-cover"
-                 />
-                 {/* Image overlay */}
-                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-               <div className="absolute -top-4 -left-4 w-20 h-20 bg-accent-blue/20 rounded-full blur-xl animate-pulse"></div>
-               <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-accent-gold/20 rounded-full blur-lg animate-pulse delay-300"></div>
-            </div>
-          </div>
-          
-          {/* Content */}
-          <div className="order-1 lg:order-2 space-y-8">
-            <div className="space-y-3 sm:space-y-4">
-              <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full">
-                Especialista em Visagismo
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary leading-tight">
-                CÁTIA
-                <span className="block text-accent-blue">PINHEIRO</span>
-              </h2>
-              <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full"></div>
-            </div>
-            
-            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-               <p className="text-xl">
-                 Fundadora da Ótica Cátia Pinheiro, sou especialista em <strong className="text-primary">Visagismo Óptico</strong> e técnica em Óptica. 
-                 Minha missão é ajudar você a encontrar os óculos ideais que realçam sua personalidade 
-                 e comunicam sua verdadeira essência.
-               </p>
-               
-               <p>
-                 Para mim, óculos vão muito além da correção visual — eles fazem parte da sua 
-                 identidade e transmitem a imagem que você deseja. Com mais de 15 anos de experiência, desenvolvi 
-                 uma metodologia única que combina técnica, estética e cuidado personalizado.
-               </p>
-               
-               <blockquote className="relative p-6 bg-gradient-to-r from-accent-blue/10 to-accent-gold/10 rounded-xl border-l-4 border-accent-blue">
-                 <p className="italic text-primary font-medium text-xl">
-                   "Cada pessoa é única, e seus óculos devem refletir essa singularidade."
-                 </p>
-               </blockquote>
-            </div>
+    <motion.section 
+      ref={(el) => {
+        sectionRef.current = el;
+        aboutRef.current = el;
+      }}
+      className="py-20 bg-gradient-to-br from-background via-background/95 to-accent-blue/5 relative overflow-hidden"
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      variants={staggerContainer}
+    >
+      {/* Background parallax elements */}
+      <motion.div 
+        className="absolute inset-0 opacity-30"
+        style={{ y: shouldUseComplexAnimations ? backgroundY : 0 }}
+      >
+        <div className="absolute top-20 right-20 w-32 h-32 bg-accent-gold/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-accent-blue/10 rounded-full blur-2xl"></div>
+      </motion.div>
 
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="neu-card text-center group">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content - Image */}
+          <motion.div 
+            className="relative group"
+            style={{ y: shouldUseComplexAnimations ? imageY : 0 }}
+            initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ 
+              duration: prefersReducedMotion ? 0.3 : 0.8, 
+              ease: "easeOut" 
+            }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="relative">
+              {/* Main image */}
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+                <img 
+                  src={consultationProcess} 
+                  alt="Processo de Consultoria Personalizada" 
+                  className="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              
+              {/* Floating elements */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-accent-gold rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500 z-20">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent-blue/20 rounded-full blur-xl group-hover:bg-accent-blue/30 transition-colors duration-500"></div>
+            </div>
+          </motion.div>
+          
+          {/* Right Content - Text */}
+          <motion.div 
+            className="space-y-8"
+            style={{ y: shouldUseComplexAnimations ? contentY : 0 }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.div variants={textVariants} custom={0}>
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+                Transformando 
+                <span className="text-accent-gold"> Visões</span> em 
+                <span className="text-accent-blue"> Realidade</span>
+              </h2>
+            </motion.div>
+            
+            <motion.p 
+              className="text-lg text-muted-foreground leading-relaxed"
+              variants={textVariants}
+              custom={1}
+            >
+              Com mais de uma década de experiência em visagismo óptico, nossa missão é encontrar 
+              o óculos perfeito que não apenas corrige sua visão, mas realça sua personalidade única.
+            </motion.p>
+            
+            <motion.p 
+              className="text-lg text-muted-foreground leading-relaxed"
+              variants={textVariants}
+              custom={2}
+            >
+              Cada consulta é uma jornada personalizada onde analisamos seu formato de rosto, 
+              estilo de vida e preferências para criar a combinação ideal entre funcionalidade e estética.
+            </motion.p>
+            
+            <motion.blockquote 
+              className="border-l-4 border-accent-gold pl-6 py-4 bg-accent-gold/5 rounded-r-lg"
+              variants={textVariants}
+              custom={3}
+            >
+              <p className="text-lg font-medium text-foreground italic">
+                "Não vendemos apenas óculos, criamos uma nova perspectiva de como você se vê e como o mundo te vê."
+              </p>
+            </motion.blockquote>
+            
+            {/* Stats */}
+            <motion.div 
+              className="grid grid-cols-2 gap-6 pt-8"
+              variants={staggerContainer}
+            >
+              <motion.div 
+                className="neu-card text-center group"
+                variants={textVariants}
+                custom={4}
+              >
                 <div 
                   ref={yearsCounter.elementRef}
-                  className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform"
+                  className="text-4xl font-bold text-accent-gold mb-2 group-hover:scale-110 transition-transform"
                 >
                   {yearsCounter.formattedCount}
                 </div>
                 <div className="text-sm text-muted-foreground font-medium">Anos de Experiência</div>
-              </div>
-              <div className="neu-card text-center group">
+              </motion.div>
+              <motion.div 
+                className="neu-card text-center group"
+                variants={textVariants}
+                custom={5}
+              >
                 <div 
                   ref={clientsCounter.elementRef}
                   className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform"
@@ -87,16 +190,12 @@ const AboutSection = () => {
                   {clientsCounter.formattedCount}
                 </div>
                 <div className="text-sm text-muted-foreground font-medium">Clientes Satisfeitos</div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-      
-      {/* Decorative floating elements */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-accent-gold/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 left-20 w-24 h-24 bg-accent-blue/10 rounded-full blur-2xl animate-pulse delay-500"></div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,11 +1,80 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Heart from "lucide-react/dist/esm/icons/heart";
 import Glasses from "lucide-react/dist/esm/icons/glasses";
 import Cpu from "lucide-react/dist/esm/icons/cpu";
 import Crown from "lucide-react/dist/esm/icons/crown";
 import clientExperience from "@/assets/client-experience.jpg";
 import { useCountUpOnView } from "@/hooks/use-count-up";
+import { useScrollTrigger, useStaggeredScrollTrigger } from "@/hooks/useScrollTrigger";
 
 const BenefitsSection = () => {
+  // Refs para efeitos parallax
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Efeitos parallax
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  // Hooks de scroll trigger
+  const headerTrigger = useScrollTrigger({ threshold: 0.2 });
+  const { setElementRef: setBenefitRef, visibleItems: visibleBenefits } = useStaggeredScrollTrigger(4, 150);
+  const contentTrigger = useScrollTrigger({ threshold: 0.3 });
+
+  // Variantes de animação
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+        duration: 0.6
+      }
+    }
+  };
+
+  const benefitVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      rotateX: -15
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotateX: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 120,
+        damping: 20,
+        duration: 0.8
+      }
+    }
+  };
+
   // Configuração das animações de contagem para as estatísticas
   const satisfactionCounter = useCountUpOnView({
     end: 98,
@@ -49,25 +118,67 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10">
-        <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16">
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full">
+    <motion.section 
+      ref={sectionRef}
+      className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden"
+      style={{ opacity }}
+    >
+      <motion.div 
+        className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10"
+        style={{ y }}
+      >
+        <motion.div 
+          ref={headerTrigger.elementRef as React.RefObject<HTMLDivElement>}
+          className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={headerTrigger.isVisible ? "visible" : "hidden"}
+        >
+          <motion.div 
+            className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full"
+            variants={itemVariants}
+          >
             Benefícios de ser nosso cliente
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+          </motion.div>
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
+            variants={itemVariants}
+          >
             Benefícios de
-            <span className="block text-accent-blue">ser nosso cliente</span>
-          </h2>
-          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full mx-auto"></div>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
+            <motion.span 
+              className="block text-accent-blue"
+              variants={itemVariants}
+            >
+              ser nosso cliente
+            </motion.span>
+          </motion.h2>
+          <motion.div 
+            className="w-16 sm:w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full mx-auto"
+            variants={itemVariants}
+          />
+          <motion.p 
+            className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4"
+            variants={itemVariants}
+          >
             Mais do que encontrar óculos, oferecemos uma transformação completa da sua imagem
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {benefits.map((benefit, index) => (
-            <div key={index} className="morphism-premium group pb-16">
+            <motion.div 
+              key={index} 
+              ref={setBenefitRef(index)}
+              className="morphism-premium group pb-16"
+              variants={benefitVariants}
+              initial="hidden"
+              animate={visibleBenefits[index] ? "visible" : "hidden"}
+              whileHover={{ 
+                scale: 1.02,
+                y: -5,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 to-accent-gold/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="flex items-start space-x-6 relative z-10">
                  <div className="flex-shrink-0 w-20 h-20 neu-button bg-white rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-premium transition-all duration-300 border border-gray-200">
@@ -105,35 +216,65 @@ const BenefitsSection = () => {
                   👑 Única
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
         
-         <div className="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+         <motion.div 
+           ref={contentTrigger.elementRef as React.RefObject<HTMLDivElement>}
+           className="mt-16 grid lg:grid-cols-2 gap-12 items-center"
+           variants={containerVariants}
+           initial="hidden"
+           animate={contentTrigger.isVisible ? "visible" : "hidden"}
+         >
            {/* Image */}
-            <div className="order-2 lg:order-1 flex justify-center">
+            <motion.div 
+              className="order-2 lg:order-1 flex justify-center"
+              variants={itemVariants}
+            >
                <div className="max-w-md mx-auto rounded-2xl overflow-hidden shadow-elegant">
-                 <img 
+                 <motion.img 
                    src={clientExperience} 
                    alt="Cliente satisfeita com sua nova experiência em óculos" 
                    className="w-full h-auto object-cover"
+                   whileHover={{ scale: 1.05 }}
+                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                  />
                </div>
-            </div>
+            </motion.div>
            
            {/* Content */}
-           <div className="order-1 lg:order-2 bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 md:p-12 text-white shadow-elegant">
+           <motion.div 
+             className="order-1 lg:order-2 bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 md:p-12 text-white shadow-elegant"
+             variants={itemVariants}
+             whileHover={{ 
+               scale: 1.02,
+               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+             }}
+           >
              <div className="space-y-6">
-               <h3 className="text-3xl md:text-4xl font-bold">
+               <motion.h3 
+                 className="text-3xl md:text-4xl font-bold"
+                 variants={itemVariants}
+               >
                  Resultados que Transformam Vidas
-               </h3>
-               <p className="text-xl opacity-90 leading-relaxed">
+               </motion.h3>
+               <motion.p 
+                 className="text-xl opacity-90 leading-relaxed"
+                 variants={itemVariants}
+               >
                  Nossa abordagem vai além da correção visual - criamos uma nova versão de você, 
                  mais confiante e autêntica, através dos óculos perfeitos.
-               </p>
+               </motion.p>
                
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                 <div className="text-center">
+               <motion.div 
+                 className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8"
+                 variants={containerVariants}
+               >
+                 <motion.div 
+                   className="text-center"
+                   variants={itemVariants}
+                 >
                    <div 
                      ref={satisfactionCounter.elementRef}
                      className="text-4xl font-bold text-accent-blue-light mb-2"
@@ -141,8 +282,11 @@ const BenefitsSection = () => {
                      {satisfactionCounter.formattedCount}
                    </div>
                    <div className="text-sm opacity-80">Satisfação dos Clientes</div>
-                 </div>
-                 <div className="text-center">
+                 </motion.div>
+                 <motion.div 
+                   className="text-center"
+                   variants={itemVariants}
+                 >
                    <div 
                      ref={experienceCounter.elementRef}
                      className="text-4xl font-bold text-accent-blue-light mb-2"
@@ -150,8 +294,11 @@ const BenefitsSection = () => {
                      {experienceCounter.formattedCount}
                    </div>
                    <div className="text-sm opacity-80">Anos de Experiência</div>
-                 </div>
-                 <div className="text-center">
+                 </motion.div>
+                 <motion.div 
+                   className="text-center"
+                   variants={itemVariants}
+                 >
                    <div 
                      ref={transformationsCounter.elementRef}
                      className="text-4xl font-bold text-accent-blue-light mb-2"
@@ -159,13 +306,13 @@ const BenefitsSection = () => {
                      {transformationsCounter.formattedCount}
                    </div>
                    <div className="text-sm opacity-80">Transformações</div>
-                 </div>
-               </div>
+                 </motion.div>
+               </motion.div>
              </div>
-           </div>
-         </div>
-      </div>
-    </section>
+           </motion.div>
+         </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
