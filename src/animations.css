@@ -1,0 +1,57 @@
+/* Animação Metallic Shimmer para efeito nude metálico */
+@keyframes metallic-shimmer {
+  0% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 0.6;
+    transform: scale(1.01) rotate(1deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02) rotate(0deg);
+  }
+  75% {
+    opacity: 0.5;
+    transform: scale(1.01) rotate(-1deg);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Animação Silver Metallic Glow para efeito prata metálico */
+@keyframes silver-metallic-glow {
+  0% {
+    opacity: 0.2;
+    transform: scale(1) rotateZ(0deg);
+    filter: brightness(1) contrast(1);
+  }
+  20% {
+    opacity: 0.5;
+    transform: scale(1.005) rotateZ(0.5deg);
+    filter: brightness(1.1) contrast(1.05);
+  }
+  40% {
+    opacity: 0.7;
+    transform: scale(1.01) rotateZ(0deg);
+    filter: brightness(1.2) contrast(1.1);
+  }
+  60% {
+    opacity: 0.6;
+    transform: scale(1.005) rotateZ(-0.5deg);
+    filter: brightness(1.15) contrast(1.08);
+  }
+  80% {
+    opacity: 0.4;
+    transform: scale(1.002) rotateZ(0.2deg);
+    filter: brightness(1.05) contrast(1.02);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1) rotateZ(0deg);
+    filter: brightness(1) contrast(1);
+  }
+}
