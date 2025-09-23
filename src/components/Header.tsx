@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import Menu from "lucide-react/dist/esm/icons/menu";
+import X from "lucide-react/dist/esm/icons/x";
+import { motion, AnimatePresence } from "framer-motion";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +48,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <span className={`text-2xl font-bold transition-all duration-300 ${isScrolled ? 'bg-gradient-to-r from-accent-blue to-accent-gold bg-clip-text text-transparent' : 'text-white drop-shadow-lg'} tracking-wider font-serif`}>
+            <span className={`text-xl sm:text-2xl font-bold transition-all duration-300 ${isScrolled ? 'bg-gradient-to-r from-accent-blue to-accent-gold bg-clip-text text-transparent' : 'text-white drop-shadow-lg'} tracking-wider font-serif`}>
               CAP
             </span>
           </div>
@@ -55,7 +58,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`transition-colors ${isScrolled ? 'text-primary' : 'text-white'}`}>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="transition-colors text-black">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>

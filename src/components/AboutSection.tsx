@@ -2,9 +2,9 @@ import consultationProcess from "@/assets/consultation-process.jpg";
 
 const AboutSection = () => {
   return (
-    <section id="sobre" className="py-20 diagonal-pattern relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section id="sobre" className="py-12 sm:py-16 md:py-20 diagonal-pattern relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Image */}
           <div className="order-2 lg:order-1 flex justify-center">
             <div className="relative group">
@@ -24,15 +24,15 @@ const AboutSection = () => {
           
           {/* Content */}
           <div className="order-1 lg:order-2 space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block px-4 py-2 bg-accent-blue/10 text-accent-blue font-semibold text-sm uppercase tracking-wider rounded-full">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full">
                 Especialista em Visagismo
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-primary leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary leading-tight">
                 CÁTIA
                 <span className="block text-accent-blue">PINHEIRO</span>
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full"></div>
+              <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full"></div>
             </div>
             
             <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">

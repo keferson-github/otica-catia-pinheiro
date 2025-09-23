@@ -26,23 +26,23 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center space-y-6 mb-16">
-          <div className="inline-block px-4 py-2 bg-accent-blue/10 text-accent-blue font-semibold text-sm uppercase tracking-wider rounded-full">
+    <section className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full">
             Benefícios de ser nosso cliente
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
             Benefícios de
             <span className="block text-accent-blue">ser nosso cliente</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full mx-auto"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-accent-blue to-accent-gold rounded-full mx-auto"></div>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             Mais do que encontrar óculos, oferecemos uma transformação completa da sua imagem
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {benefits.map((benefit, index) => (
             <div key={index} className="morphism-premium group">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 to-accent-gold/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
