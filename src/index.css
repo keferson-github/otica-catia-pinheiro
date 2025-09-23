@@ -1375,14 +1375,34 @@ All colors MUST be HSL for optimal theming.
   z-index: 1;
 }
 
+/* Pseudo-elemento para criar efeito espelho no hover */
+.modern-service-card-beige:hover::before {
+  opacity: 1;
+}
+
+.modern-service-card-beige:hover::after {
+  left: 100%;
+}
+
+/* Criando efeito espelho com elemento adicional via CSS */
+.modern-service-card-beige {
+  position: relative;
+}
+
 .modern-service-card-beige:hover {
   transform: translateY(-12px) scale(1.02);
   box-shadow: 
     0 20px 60px rgba(210, 190, 170, 0.25),
     0 12px 40px rgba(195, 175, 155, 0.15),
     inset 0 2px 0 rgba(255, 250, 245, 1),
-    inset 0 -2px 0 rgba(200, 180, 160, 0.3);
+    inset 0 -2px 0 rgba(200, 180, 160, 0.3),
+    /* Efeito espelho - reflexo abaixo do card */
+    0 30px 20px -10px rgba(245, 240, 235, 0.3),
+    0 35px 25px -15px rgba(238, 228, 218, 0.2),
+    0 40px 30px -20px rgba(232, 220, 208, 0.1);
   border-color: rgba(210, 190, 170, 0.5);
+  position: relative;
+  filter: drop-shadow(0 25px 15px rgba(210, 190, 170, 0.15));
 }
 
 .modern-service-card-beige:hover::before {
@@ -1487,6 +1507,7 @@ All colors MUST be HSL for optimal theming.
 }
 
 /* Modern CTA Button */
+/* Botão CTA Geral */
 .modern-cta-button {
   background: linear-gradient(135deg, #000 0%, #333 100%);
   color: white;
@@ -1523,10 +1544,17 @@ All colors MUST be HSL for optimal theming.
   transition: left 0.6s ease;
 }
 
+/* Hover padrão (para card beige/premium) */
 .modern-cta-button:hover {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   background: linear-gradient(135deg, hsl(var(--accent-gold)) 0%, hsl(var(--accent-gold-dark)) 100%);
+}
+
+/* Hover específico para card silver (Atendimento Presencial) - mantém preto */
+.modern-service-card-silver .modern-cta-button:hover {
+  background: linear-gradient(135deg, #000 0%, #222 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .modern-cta-button:hover::before {
