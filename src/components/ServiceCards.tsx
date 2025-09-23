@@ -207,34 +207,38 @@ const ServiceCards = () => {
               />
             </motion.div>
             
-            <div className="service-card-silver h-full relative">
+            <div className="modern-service-card-silver h-full relative">
+              {/* Floating Elements */}
+              <div className="modern-floating-element modern-floating-element-1" style={{color: 'hsl(var(--accent-silver))'}}></div>
+              <div className="modern-floating-element modern-floating-element-2" style={{color: 'hsl(var(--accent-silver-light))'}}></div>
+              
               <motion.div 
-                className="service-card-silver-content"
+                className="modern-card-content"
                 variants={itemVariants}
               >
-                {/* Content */}
+                {/* Header */}
                 <motion.div 
-                  className="space-y-6 mb-8"
+                  className="modern-card-header"
                   variants={itemVariants}
                 >
                   <motion.h3 
-                    className="text-2xl md:text-3xl font-bold text-primary group-hover:text-accent-silver-dark transition-colors duration-300 leading-tight"
+                    className="modern-card-title"
                     variants={itemVariants}
                   >
                     Atendimento Presencial
-                    <span className="block text-xl font-semibold mt-1" style={{color: '#232323', fontWeight: 700}}>Consultoria Gratuita</span>
+                    <span className="modern-card-subtitle block">Consultoria Gratuita</span>
                   </motion.h3>
                   <motion.p 
-                    className="text-lg text-muted-foreground leading-relaxed group-hover:text-primary transition-colors duration-300"
+                    className="modern-card-description"
                     variants={itemVariants}
                   >
                     Encontre os óculos ideais através da nossa consultoria especializada em visagismo óptico, com atendimento personalizado e sem custo.
                   </motion.p>
                 </motion.div>
                 
-                {/* Features with silver bullets */}
+                {/* Features */}
                 <motion.div 
-                  className="space-y-3 mb-8"
+                  className="modern-feature-list"
                   variants={itemVariants}
                 >
                   {[
@@ -244,26 +248,22 @@ const ServiceCards = () => {
                   ].map((feature, index) => (
                     <motion.div 
                       key={index}
-                      className="flex items-center gap-3 text-sm text-muted-foreground group-hover:text-primary transition-colors"
+                      className="modern-feature-item"
                       variants={bulletVariants}
                       custom={index}
                     >
-                      <motion.div 
-                        className="w-2 h-2 bg-accent-silver rounded-full"
-                        whileHover={{ scale: 1.5 }}
-                        transition={{ duration: 0.2 }}
-                      />
+                      <div className="modern-feature-bullet" />
                       {feature}
                     </motion.div>
                   ))}
                 </motion.div>
                 
-                {/* CTA with elegant hover effect */}
+                {/* CTA Button */}
                 <motion.a 
                   href="https://wa.me/5511997712138?text=Olá! Gostaria de solicitar óculos através da consultoria de visagismo." 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 flex items-center justify-between group shadow-2xl hover:shadow-2xl relative"
+                  className="modern-cta-button"
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.05,
@@ -271,18 +271,8 @@ const ServiceCards = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="flex-1 text-center">Atendimento Loja</span>
-                  <motion.div
-                    className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center absolute right-3"
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ 
-                      duration: 1.5, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <ArrowRight size={16} className="text-white" />
-                  </motion.div>
+                  <span>Atendimento Loja</span>
+                  <ArrowRight size={16} className="modern-cta-icon" />
                 </motion.a>
               </motion.div>
             </div>
@@ -302,38 +292,38 @@ const ServiceCards = () => {
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="service-card-beige h-full relative before:absolute before:inset-0 before:rounded-3xl before:p-[3px] before:bg-gradient-to-br before:from-accent-beige before:via-accent-beige-light before:to-accent-beige-dark before:transition-all before:duration-500 group-hover:before:shadow-xl group-hover:before:shadow-accent-beige/30 after:absolute after:inset-0 after:rounded-3xl after:bg-gradient-to-r after:from-transparent after:via-white/50 after:to-transparent after:transform after:-translate-x-full group-hover:after:translate-x-full after:transition-transform after:duration-800 after:pointer-events-none">
+            <div className="modern-service-card-beige h-full relative">
+              {/* Floating Elements */}
+              <div className="modern-floating-element modern-floating-element-1" style={{color: 'hsl(var(--accent-gold))'}}></div>
+              <div className="modern-floating-element modern-floating-element-2" style={{color: 'hsl(var(--accent-gold-light))'}}></div>
               
               <motion.div 
-                className="premium-inner relative bg-white/96 backdrop-blur-sm rounded-3xl h-full p-8 border-2 border-transparent bg-gradient-to-br from-white via-accent-beige/5 to-white/92 group-hover:border-accent-beige/30 group-hover:bg-white/98 transition-all duration-500 z-10 shadow-xl group-hover:shadow-2xl group-hover:shadow-accent-beige/15"
+                className="modern-card-content"
                 variants={itemVariants}
               >
-                
-                {/* Premium content */}
+                {/* Header */}
                 <motion.div 
-                  className="space-y-6 mb-8"
+                  className="modern-card-header"
                   variants={itemVariants}
                 >
                   <motion.h3 
-                    className="text-2xl md:text-3xl font-bold text-primary group-hover:text-accent-beige-dark transition-colors duration-300 relative leading-tight"
+                    className="modern-card-title"
                     variants={itemVariants}
                   >
                     Consultoria Premium
-                    <span className="block text-xl font-semibold text-accent-beige-dark mt-1">Visagismo Personalizado</span>
-                    
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent-beige/10 via-accent-beige-light/10 to-accent-beige/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    <span className="modern-card-subtitle block">Visagismo Personalizado</span>
                   </motion.h3>
                   <motion.p 
-                    className="text-lg text-muted-foreground leading-relaxed group-hover:text-primary transition-colors duration-300"
+                    className="modern-card-description"
                     variants={itemVariants}
                   >
                     Transformação completa da sua imagem através de análise detalhada das suas características faciais e estilo pessoal. Agende agora seu horário!
                   </motion.p>
                 </motion.div>
                 
-                {/* Premium features with gold bullets */}
+                {/* Features */}
                 <motion.div 
-                  className="space-y-3 mb-8"
+                  className="modern-feature-list"
                   variants={itemVariants}
                 >
                   {[
@@ -343,29 +333,22 @@ const ServiceCards = () => {
                   ].map((feature, index) => (
                     <motion.div 
                       key={index}
-                      className="flex items-center gap-3 text-sm text-muted-foreground group-hover:text-primary transition-colors"
+                      className="modern-feature-item"
                       variants={bulletVariants}
                       custom={index}
                     >
-                      <motion.div 
-                        className="w-2 h-2 bg-accent-gold rounded-full shadow-lg shadow-accent-gold/50"
-                        whileHover={{ 
-                          scale: 1.5,
-                          boxShadow: "0 0 15px rgba(212, 175, 55, 0.8)"
-                        }}
-                        transition={{ duration: 0.2 }}
-                      />
+                      <div className="modern-feature-bullet" />
                       {feature}
                     </motion.div>
                   ))}
                 </motion.div>
                 
-                {/* Premium CTA with advanced effects */}
+                {/* CTA Button */}
                 <motion.a 
                   href="https://wa.me/5511997712138?text=Olá! Gostaria de agendar uma consultoria de visagismo óptico." 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 flex items-center justify-between group shadow-2xl hover:shadow-2xl relative"
+                  className="modern-cta-button"
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.05,
@@ -373,18 +356,8 @@ const ServiceCards = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="flex-1 text-center">Agendar Consultoria</span>
-                  <motion.div
-                    className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center absolute right-3"
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ 
-                      duration: 1.5, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <ArrowRight size={16} className="text-white" />
-                  </motion.div>
+                  <span>Agendar Consultoria</span>
+                  <ArrowRight size={16} className="modern-cta-icon" />
                 </motion.a>
               </motion.div>
             </div>
