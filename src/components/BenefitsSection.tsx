@@ -40,8 +40,8 @@ const BenefitsSection = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9
+      y: 20, // Reduzido de 50 para 20
+      scale: 0.95 // Reduzido de 0.9 para 0.95
     },
     visible: { 
       opacity: 1, 
@@ -49,9 +49,9 @@ const BenefitsSection = () => {
       scale: 1,
       transition: {
         type: "spring" as const,
-        stiffness: 100,
-        damping: 15,
-        duration: 0.6
+        stiffness: 120, // Aumentado de 100 para 120 para ser mais rápido
+        damping: 18, // Aumentado de 15 para 18
+        duration: 0.4 // Reduzido de 0.6 para 0.4
       }
     }
   };
@@ -59,8 +59,8 @@ const BenefitsSection = () => {
   const benefitVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      rotateX: -15
+      y: 25, // Reduzido de 60 para 25
+      rotateX: -8 // Reduzido de -15 para -8
     },
     visible: { 
       opacity: 1, 
@@ -68,9 +68,9 @@ const BenefitsSection = () => {
       rotateX: 0,
       transition: {
         type: "spring" as const,
-        stiffness: 120,
-        damping: 20,
-        duration: 0.8
+        stiffness: 140, // Aumentado de 120 para 140
+        damping: 22, // Aumentado de 20 para 22
+        duration: 0.5 // Reduzido de 0.8 para 0.5
       }
     }
   };
@@ -98,7 +98,7 @@ const BenefitsSection = () => {
     {
        icon: Heart,
        title: "Atendimento especializado e personalizado",
-       description: "Cada consulta é única, focada em suas necessidades e preferências específicas, com dedicação total."
+       description: "Cada consultoria é única, focada em suas necessidades e preferências específicas, com dedicação total."
      },
      {
        icon: Glasses,

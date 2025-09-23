@@ -28,7 +28,6 @@ const Hero = () => {
   
   // Transformações condicionais para elementos específicos
   const yButton = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   const scrollToConsultation = () => {
     const element = document.getElementById('como-funciona');
@@ -37,27 +36,27 @@ const Hero = () => {
     });
   };
 
-  // Variantes de animação otimizadas
+  // Variantes de animação otimizadas - REDUZIDAS
   const textVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 }, // Reduzido de 50 para 20
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: prefersReducedMotion ? 0 : i * 0.2,
-        duration: prefersReducedMotion ? 0.3 : 0.8,
+        delay: prefersReducedMotion ? 0 : i * 0.1, // Reduzido de 0.2 para 0.1
+        duration: prefersReducedMotion ? 0.3 : 0.4, // Reduzido de 0.8 para 0.4
         ease: "easeOut" as const
       }
     })
   };
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 15 }, // Reduzido de 30 para 15
     visible: {
       opacity: 1,
       y: 0,
       transition: { 
-        duration: prefersReducedMotion ? 0.3 : 0.6, 
+        duration: prefersReducedMotion ? 0.3 : 0.4, // Reduzido de 0.6 para 0.4
         ease: "easeOut" as const
       }
     }
@@ -68,8 +67,8 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.05 : 0.1,
-        delayChildren: prefersReducedMotion ? 0.1 : 0.3
+        staggerChildren: prefersReducedMotion ? 0.05 : 0.08, // Reduzido de 0.1 para 0.08
+        delayChildren: prefersReducedMotion ? 0.1 : 0.15 // Reduzido de 0.3 para 0.15
       }
     }
   };
@@ -248,18 +247,8 @@ const Hero = () => {
           </motion.div>
           
           {/* Right Content - Main Image */}
-          <motion.div 
+          <div 
             className="relative flex justify-center lg:justify-end order-1 lg:order-2 mt-16 sm:mt-0"
-            initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              delay: prefersReducedMotion ? 0.2 : 0.4, 
-              duration: prefersReducedMotion ? 0.3 : 0.8, 
-              ease: "easeOut" 
-            }}
-            style={{ 
-              y: shouldUseComplexAnimations ? yImage : 0 
-            }}
           >
             <div className="relative">
               {/* Main professional image */}
@@ -271,7 +260,7 @@ const Hero = () => {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.section>

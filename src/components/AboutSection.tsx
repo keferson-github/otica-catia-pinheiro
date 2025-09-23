@@ -31,15 +31,15 @@ const AboutSection = () => {
     shouldUseComplexAnimations ? ["0%", "10%"] : ["0%", "0%"]
   );
 
-  // Variantes de animação otimizadas para textos
+  // Variantes de animação otimizadas para textos - REDUZIDAS
   const textVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 }, // Reduzido de 50 para 20
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: prefersReducedMotion ? 0 : i * 0.1,
-        duration: prefersReducedMotion ? 0.3 : 0.6,
+        delay: prefersReducedMotion ? 0 : i * 0.08, // Reduzido de 0.1 para 0.08
+        duration: prefersReducedMotion ? 0.3 : 0.4, // Reduzido de 0.6 para 0.4
         ease: [0.25, 0.46, 0.45, 0.94] as const
       }
     })
@@ -50,8 +50,8 @@ const AboutSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.1 : 0.2,
-        delayChildren: prefersReducedMotion ? 0.05 : 0.1
+        staggerChildren: prefersReducedMotion ? 0.1 : 0.12, // Reduzido de 0.2 para 0.12
+        delayChildren: prefersReducedMotion ? 0.05 : 0.08 // Reduzido de 0.1 para 0.08
       }
     }
   };

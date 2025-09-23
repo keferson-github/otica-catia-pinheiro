@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import type { Variants, Transition } from 'framer-motion';
+import type { Variants, Transition, Variant } from 'framer-motion';
 
 // Hook para detectar preferências de movimento reduzido
 export const useReducedMotion = () => {
@@ -84,22 +84,28 @@ export const useOptimizedVariants = () => {
       return {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 0.1 } }
-      };
+      } as Variants;
     }
 
     if (isLowEndDevice) {
       // Simplificar animações para dispositivos de baixo desempenho
+      const visibleVariant = baseVariants.visible as Variant;
       return {
         ...baseVariants,
         visible: {
-          ...baseVariants.visible,
+          ...visibleVariant,
           transition: {
-            ...baseVariants.visible?.transition,
+            ...(typeof visibleVariant === 'object' && 'transition' in visibleVariant ? visibleVariant.transition : {}),
             type: "tween",
-            duration: Math.min(baseVariants.visible?.transition?.duration || 0.3, 0.3)
+            duration: Math.min(
+              (typeof visibleVariant === 'object' && 'transition' in visibleVariant && 
+               visibleVariant.transition && typeof visibleVariant.transition === 'object' && 
+               'duration' in visibleVariant.transition ? visibleVariant.transition.duration as number : 0.3) || 0.3, 
+              0.3
+            )
           }
         }
-      };
+      } as Variants;
     }
 
     return baseVariants;
