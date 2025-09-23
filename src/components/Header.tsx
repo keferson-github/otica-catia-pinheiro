@@ -29,6 +29,7 @@ const WHATSAPP_CONFIG = {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Listener de scroll otimizado
@@ -41,16 +42,43 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função de navegação suave
+  // Função de navegação suave com fade-out
   const scrollToSection = useCallback((href: string) => {
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    setIsMenuOpen(false);
+    // Inicia o fade-out
+    setIsMenuVisible(false);
+    
+    // Aguarda a animação de fade-out antes de fechar o menu
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      
+      // Executa a navegação
+      if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const element = document.querySelector(href);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300); // Duração do fade-out
   }, []);
+
+  // Função para controlar abertura/fechamento do menu
+  const toggleMenu = useCallback(() => {
+    if (isMenuOpen) {
+      // Se está aberto, inicia o fade-out e rotaciona o botão imediatamente
+      setIsMenuVisible(false);
+      setIsMenuOpen(false); // Muda o estado imediatamente para rotacionar o botão
+      // Remove o menu do DOM após a animação de fade-out
+      setTimeout(() => {
+        // Este timeout é apenas para limpar o estado após a animação
+      }, 300);
+    } else {
+      // Se está fechado, abre e inicia o fade-in
+      setIsMenuOpen(true);
+      setTimeout(() => {
+        setIsMenuVisible(true);
+      }, 10); // Pequeno delay para garantir que o DOM seja atualizado
+    }
+  }, [isMenuOpen]);
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -85,15 +113,15 @@ const Header = () => {
 
           {/* Menu Mobile */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 transition-all duration-500 text-gray-900 bg-white/20 backdrop-blur-sm rounded-lg border border-gray-300/30 shadow-sm hover:bg-white/30 hover:scale-110 active:scale-95"
+            onClick={toggleMenu}
+            className="md:hidden p-2 transition-all duration-300 text-gray-900 bg-white/20 backdrop-blur-sm rounded-lg border border-gray-300/30 shadow-sm hover:bg-white/30 hover:scale-110 active:scale-95"
             aria-label="Menu"
           >
             <div className="relative w-6 h-6 flex items-center justify-center">
               {/* Ícone Menu com rotação */}
               <Menu 
                 size={24} 
-                className={`absolute transition-all duration-500 ease-in-out transform ${
+                className={`absolute transition-all duration-300 ease-out transform ${
                   isMenuOpen 
                     ? 'rotate-180 scale-0 opacity-0' 
                     : 'rotate-0 scale-100 opacity-100'
@@ -102,7 +130,7 @@ const Header = () => {
               {/* Ícone X com rotação */}
               <X 
                 size={24} 
-                className={`absolute transition-all duration-500 ease-in-out transform ${
+                className={`absolute transition-all duration-300 ease-out transform ${
                   isMenuOpen 
                     ? 'rotate-0 scale-100 opacity-100' 
                     : 'rotate-180 scale-0 opacity-0'
@@ -113,17 +141,24 @@ const Header = () => {
         </div>
 
         {/* Navegação Mobile */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white/10 backdrop-blur-xl border-t border-white/30 shadow-xl rounded-b-2xl mx-4 mb-4 animate-in slide-in-from-top-5 duration-300 ease-out">
+        {(isMenuOpen || isMenuVisible) && (
+          <div className={`md:hidden bg-white/10 backdrop-blur-xl border-t border-white/30 shadow-xl rounded-b-2xl mx-4 mb-4 transition-all duration-300 ease-out ${
+            isMenuVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-2'
+          }`}>
             <div className="px-6 py-6 space-y-2">
               {NAVIGATION_CONFIG.map((item, index) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`block w-full text-center py-3 px-4 text-base font-semibold transition-all duration-300 text-gray-900 hover:text-gray-700 hover:bg-white/20 rounded-lg group relative animate-in slide-in-from-top-3 ease-out backdrop-blur-sm`}
+                  className={`block w-full text-center py-3 px-4 text-base font-semibold transition-all duration-300 text-gray-900 hover:text-gray-700 hover:bg-white/20 rounded-lg group relative backdrop-blur-sm ${
+                    isMenuVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-2'
+                  }`}
                   style={{ 
-                    animationDelay: `${index * 50}ms`,
-                    animationFillMode: 'both'
+                    transitionDelay: isMenuVisible ? `${index * 50}ms` : '0ms'
                   }}
                 >
                   {item.name}
