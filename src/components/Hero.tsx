@@ -25,7 +25,7 @@ const Hero = () => {
       </div>
 
       {/* WhatsApp CTA Button */}
-      <div className="hidden sm:block absolute top-8 md:top-10 right-6 md:right-12 lg:right-16 xl:right-20 z-20">
+      <div className="hidden sm:block absolute top-20 md:top-26 lg:top-20 right-6 md:right-12 lg:right-16 xl:right-20 z-20">
         <a 
           href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de mais informações!"
           target="_blank"

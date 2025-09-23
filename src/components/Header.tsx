@@ -1,81 +1,123 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Menu from "lucide-react/dist/esm/icons/menu";
 import X from "lucide-react/dist/esm/icons/x";
-import { motion, AnimatePresence } from "framer-motion";
+
+// Helper function to check active section
+const isActiveSection = (href: string) => {
+  if (href === '#') {
+    return window.scrollY < 100;
+  }
+  const element = document.querySelector(href);
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  return rect.top <= 100 && rect.bottom >= 100;
+};
+
+// Configuração de navegação minimalista
+const NAVIGATION_CONFIG = [
+  { name: 'Início', href: '#' },
+  { name: 'Serviços', href: '#servicos' },
+  { name: 'Visagismo', href: '#visagismo' },
+  { name: 'Como Funciona', href: '#como-funciona' },
+  { name: 'Sobre', href: '#sobre' }
+] as const;
+
+const WHATSAPP_CONFIG = {
+  url: "https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro!",
+  text: "Contato"
+} as const;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Listener de scroll otimizado
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const navigation = [{
-    name: 'Início',
-    href: '#'
-  }, {
-    name: 'Serviços',
-    href: '#servicos'
-  }, {
-    name: 'Visagismo',
-    href: '#visagismo'
-  }, {
-    name: 'Como Funciona',
-    href: '#como-funciona'
-  }, {
-    name: 'Sobre',
-    href: '#sobre'
-  }];
-  const scrollToSection = (href: string) => {
+
+  // Função de navegação suave
+  const scrollToSection = useCallback((href: string) => {
     if (href === '#') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const element = document.querySelector(href);
-      element?.scrollIntoView({
-        behavior: 'smooth'
-      });
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setIsMenuOpen(false);
-  };
-  return <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm' : 'bg-transparent'}`}>
+  }, []);
+
+  return (
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm' 
+        : 'bg-transparent'
+    }`}>
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          
+          {/* Logo Minimalista */}
           <div className="flex items-center">
-            <span className={`text-xl sm:text-2xl font-bold transition-all duration-300 ${isScrolled ? 'bg-gradient-to-r from-accent-blue to-accent-gold bg-clip-text text-transparent' : 'text-white drop-shadow-lg'} tracking-wider font-serif`}>
+            <span className={`text-2xl font-bold transition-colors duration-300 ${
+              isScrolled ? 'text-gray-900' : 'text-white'
+            }`}>
               CAP
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="transition-colors text-black">
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          {/* Navegação Desktop */}
+          <div className="hidden md:flex items-center space-x-8">
+            {NAVIGATION_CONFIG.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className={`relative text-sm font-semibold transition-all duration-300 px-2 py-1 text-gray-900 hover:text-gray-700 group`}
+              >
+                {item.name}
+                {/* Sublinhado suave no hover */}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-700 rounded-full transition-all duration-300 group-hover:w-full"></span>
+              </button>
+            ))}
           </div>
+
+          {/* Menu Mobile */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              isScrolled ? 'text-gray-900' : 'text-white'
+            }`}
+            aria-label="Menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && <div className="md:hidden bg-background border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className="block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:text-accent-blue hover:bg-muted rounded-md">
+        {/* Navegação Mobile */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white/98 backdrop-blur-sm border-t border-gray-200 shadow-xl">
+            <div className="px-6 py-6 space-y-4">
+              {NAVIGATION_CONFIG.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`block w-full text-left py-3 px-4 text-base font-semibold transition-all duration-300 text-gray-900 hover:text-gray-700 group relative`}
+                >
                   {item.name}
-                </button>)}
-              <a href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro!" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-accent-blue hover:bg-accent-blue-dark text-white px-3 py-2 rounded-md text-base font-medium mt-4">
-                WhatsApp
-              </a>
+                  {/* Sublinhado suave no hover - mobile */}
+                  <span className="absolute bottom-2 left-4 w-0 h-0.5 bg-gray-700 rounded-full transition-all duration-300 group-hover:w-6"></span>
+                </button>
+              ))}
             </div>
-          </div>}
+          </div>
+        )}
       </nav>
-    </header>;
+    </header>
+  );
 };
+
 export default Header;
