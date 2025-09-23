@@ -86,10 +86,29 @@ const Header = () => {
           {/* Menu Mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 transition-colors duration-300 text-gray-900 bg-white/20 backdrop-blur-sm rounded-lg border border-gray-300/30 shadow-sm hover:bg-white/30"
+            className="md:hidden p-2 transition-all duration-500 text-gray-900 bg-white/20 backdrop-blur-sm rounded-lg border border-gray-300/30 shadow-sm hover:bg-white/30 hover:scale-110 active:scale-95"
             aria-label="Menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-6 h-6 flex items-center justify-center">
+              {/* Ícone Menu com rotação */}
+              <Menu 
+                size={24} 
+                className={`absolute transition-all duration-500 ease-in-out transform ${
+                  isMenuOpen 
+                    ? 'rotate-180 scale-0 opacity-0' 
+                    : 'rotate-0 scale-100 opacity-100'
+                }`}
+              />
+              {/* Ícone X com rotação */}
+              <X 
+                size={24} 
+                className={`absolute transition-all duration-500 ease-in-out transform ${
+                  isMenuOpen 
+                    ? 'rotate-0 scale-100 opacity-100' 
+                    : 'rotate-180 scale-0 opacity-0'
+                }`}
+              />
+            </div>
           </button>
         </div>
 
