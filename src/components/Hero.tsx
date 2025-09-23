@@ -42,7 +42,7 @@ const Hero = () => {
         </a>
       </div>
 
-      <div className="px-2 sm:px-6 md:px-8 pt-8 sm:pt-20 md:pt-24 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 md:pb-16">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 pt-8 sm:pt-20 md:pt-24 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 md:pb-16">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-6 sm:space-y-4 md:space-y-6 text-center lg:text-left order-2 lg:order-1 mt-6 sm:mt-0">

@@ -1,9 +1,23 @@
 import consultationProcess from "@/assets/consultation-process.jpg";
+import { useCountUpOnView } from "@/hooks/use-count-up";
 
 const AboutSection = () => {
+  // Configuração das animações de contagem
+  const yearsCounter = useCountUpOnView({
+    end: 15,
+    duration: 2500,
+    suffix: '+',
+  });
+
+  const clientsCounter = useCountUpOnView({
+    end: 1000,
+    duration: 3000,
+    suffix: '+',
+    useGrouping: true,
+  });
   return (
     <section id="sobre" className="py-12 sm:py-16 md:py-20 diagonal-pattern relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Image */}
           <div className="order-2 lg:order-1 flex justify-center">
@@ -57,11 +71,21 @@ const AboutSection = () => {
 
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div className="neu-card text-center group">
-                <div className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform">15+</div>
+                <div 
+                  ref={yearsCounter.elementRef}
+                  className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform"
+                >
+                  {yearsCounter.formattedCount}
+                </div>
                 <div className="text-sm text-muted-foreground font-medium">Anos de Experiência</div>
               </div>
               <div className="neu-card text-center group">
-                <div className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform">1000+</div>
+                <div 
+                  ref={clientsCounter.elementRef}
+                  className="text-4xl font-bold text-accent-blue mb-2 group-hover:scale-110 transition-transform"
+                >
+                  {clientsCounter.formattedCount}
+                </div>
                 <div className="text-sm text-muted-foreground font-medium">Clientes Satisfeitos</div>
               </div>
             </div>
