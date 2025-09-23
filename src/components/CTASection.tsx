@@ -86,7 +86,7 @@ const CTASection = () => {
                   </div>
                 </div>
                 
-                  <button className="w-full py-6 bg-gradient-to-r from-accent-blue via-accent-blue-dark to-accent-blue text-white font-bold rounded-3xl transition-all duration-500 hover:shadow-2xl hover:shadow-accent-blue/30 hover:-translate-y-2 hover:scale-[1.02] group relative overflow-hidden">
+                  <button className="w-full py-6 bg-gradient-to-r from-accent-blue via-accent-blue-dark to-accent-blue text-white font-bold rounded-3xl transition-all duration-500 hover:shadow-2xl hover:shadow-accent-blue/30 hover:-translate-y-2 hover:scale-[1.02] group relative overflow-hidden shadow-2xl">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                     <span className="flex items-center justify-center gap-3 relative">
                       Quero receber as dicas exclusivas
@@ -110,7 +110,7 @@ const CTASection = () => {
                     href="https://wa.me/5511997712138?text=Olá! Tenho dúvidas sobre a newsletter." 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 font-medium rounded-xl transition-all duration-300 text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 font-medium rounded-xl transition-all duration-300 text-sm shadow-md hover:shadow-lg"
                   >
                     <MessageSquare size={16} />
                     Falar no WhatsApp

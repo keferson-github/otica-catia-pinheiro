@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import ArrowUp from "lucide-react/dist/esm/icons/arrow-up";
 import { Button } from "@/components/ui/button";
 
 const BackToTop = () => {
@@ -32,7 +32,7 @@ const BackToTop = () => {
   return (
     <Button
       onClick={scrollToTop}
-      className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-elegant hover:shadow-premium transition-all duration-300 hover:scale-110"
+      className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-2xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
       size="icon"
       aria-label="Voltar ao topo"
     >
