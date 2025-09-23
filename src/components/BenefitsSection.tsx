@@ -1,7 +1,30 @@
-import { Heart, Glasses, Cpu, Crown } from "lucide-react";
+import Heart from "lucide-react/dist/esm/icons/heart";
+import Glasses from "lucide-react/dist/esm/icons/glasses";
+import Cpu from "lucide-react/dist/esm/icons/cpu";
+import Crown from "lucide-react/dist/esm/icons/crown";
 import clientExperience from "@/assets/client-experience.jpg";
+import { useCountUpOnView } from "@/hooks/use-count-up";
 
 const BenefitsSection = () => {
+  // Configuração das animações de contagem para as estatísticas
+  const satisfactionCounter = useCountUpOnView({
+    end: 98,
+    duration: 2000,
+    suffix: '%',
+  });
+
+  const experienceCounter = useCountUpOnView({
+    end: 15,
+    duration: 2500,
+    suffix: '+',
+  });
+
+  const transformationsCounter = useCountUpOnView({
+    end: 1000,
+    duration: 3000,
+    suffix: '+',
+    useGrouping: true,
+  });
   const benefits = [
     {
        icon: Heart,
@@ -27,7 +50,7 @@ const BenefitsSection = () => {
 
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10">
         <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16">
           <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-blue/10 text-accent-blue font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-full">
             Benefícios de ser nosso cliente
@@ -44,7 +67,7 @@ const BenefitsSection = () => {
         
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {benefits.map((benefit, index) => (
-            <div key={index} className="morphism-premium group">
+            <div key={index} className="morphism-premium group pb-16">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 to-accent-gold/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="flex items-start space-x-6 relative z-10">
                  <div className="flex-shrink-0 w-20 h-20 neu-button bg-white rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-premium transition-all duration-300 border border-gray-200">
@@ -61,25 +84,25 @@ const BenefitsSection = () => {
                 </div>
               </div>
               
-              {/* Floating cards with optical benefits */}
+              {/* Floating badges - Posicionamento no canto inferior direito com cor padronizada */}
               {index === 0 && (
-                <div className="absolute top-4 right-4 bg-primary text-white px-3 py-2 rounded-lg text-xs font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Atendimento personalizado
+                <div className="absolute bottom-6 right-4 bg-gradient-to-r from-primary to-primary-light text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300">
+                  ✨ Personalizado
                 </div>
               )}
               {index === 1 && (
-                <div className="absolute top-4 right-4 bg-accent-blue text-white px-3 py-2 rounded-lg text-xs font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Estética + conforto
+                <div className="absolute bottom-6 right-4 bg-gradient-to-r from-primary to-primary-light text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300">
+                  💎 Estética
                 </div>
               )}
               {index === 2 && (
-                <div className="absolute top-4 right-4 bg-accent-gold text-primary px-3 py-2 rounded-lg text-xs font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Alta tecnologia
+                <div className="absolute bottom-6 right-4 bg-gradient-to-r from-primary to-primary-light text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300">
+                  🔬 Tecnologia
                 </div>
               )}
               {index === 3 && (
-                <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Experiência única
+                <div className="absolute bottom-6 right-4 bg-gradient-to-r from-primary to-primary-light text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300">
+                  👑 Única
                 </div>
               )}
             </div>
@@ -111,15 +134,30 @@ const BenefitsSection = () => {
                
                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                  <div className="text-center">
-                   <div className="text-4xl font-bold text-accent-blue-light mb-2">98%</div>
+                   <div 
+                     ref={satisfactionCounter.elementRef}
+                     className="text-4xl font-bold text-accent-blue-light mb-2"
+                   >
+                     {satisfactionCounter.formattedCount}
+                   </div>
                    <div className="text-sm opacity-80">Satisfação dos Clientes</div>
                  </div>
                  <div className="text-center">
-                   <div className="text-4xl font-bold text-accent-blue-light mb-2">15+</div>
+                   <div 
+                     ref={experienceCounter.elementRef}
+                     className="text-4xl font-bold text-accent-blue-light mb-2"
+                   >
+                     {experienceCounter.formattedCount}
+                   </div>
                    <div className="text-sm opacity-80">Anos de Experiência</div>
                  </div>
                  <div className="text-center">
-                   <div className="text-4xl font-bold text-accent-blue-light mb-2">1000+</div>
+                   <div 
+                     ref={transformationsCounter.elementRef}
+                     className="text-4xl font-bold text-accent-blue-light mb-2"
+                   >
+                     {transformationsCounter.formattedCount}
+                   </div>
                    <div className="text-sm opacity-80">Transformações</div>
                  </div>
                </div>

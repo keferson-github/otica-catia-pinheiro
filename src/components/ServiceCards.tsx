@@ -24,7 +24,7 @@ const ServiceCards = () => {
       }}></div>
       </div>
       
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-accent-beige/15 text-primary text-xs sm:text-sm font-semibold rounded-full mb-4 sm:mb-6 border border-accent-beige/30">

@@ -1,4 +1,5 @@
-import { Instagram, Facebook } from "lucide-react";
+import Instagram from "lucide-react/dist/esm/icons/instagram";
+import Facebook from "lucide-react/dist/esm/icons/facebook";
 
 const Footer = () => {
   return (
@@ -6,9 +7,9 @@ const Footer = () => {
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative">
+      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 py-6 sm:py-8 relative">
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 sm:gap-12 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Brand Section */}
           <div className="text-center md:text-left">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-light text-primary mb-2 sm:mb-3">
@@ -32,7 +33,7 @@ const Footer = () => {
         </div>
         
         {/* Social Links */}
-        <div className="flex justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+        <div className="flex justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
           <a 
             href="#" 
             className="group w-14 h-14 bg-card/50 hover:bg-primary border border-border/30 hover:border-primary rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-lg hover:shadow-primary/20" 
@@ -50,7 +51,7 @@ const Footer = () => {
         </div>
         
         {/* Bottom */}
-        <div className="border-t border-border/20 pt-8 text-center">
+        <div className="border-t border-border/20 pt-6 text-center">
           <p className="text-muted-foreground text-sm font-light mb-2">
             © 2025 Ótica Cátia Pinheiro. Todos os direitos reservados.
           </p>

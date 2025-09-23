@@ -55,16 +55,16 @@ const Header = () => {
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm' 
+        ? 'bg-white/20 backdrop-blur-md border-b border-white/20 shadow-lg shadow-black/5' 
         : 'bg-transparent'
     }`}>
-      <nav className="container mx-auto px-4">
+      <nav className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo Minimalista */}
           <div className="flex items-center">
             <span className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
+              isScrolled ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-lg'
             }`}>
               CAP
             </span>
@@ -89,7 +89,7 @@ const Header = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden p-2 transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
+              isScrolled ? 'text-gray-900' : 'text-white drop-shadow-md'
             }`}
             aria-label="Menu"
           >
@@ -99,17 +99,17 @@ const Header = () => {
 
         {/* Navegação Mobile */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/98 backdrop-blur-sm border-t border-gray-200 shadow-xl">
+          <div className="md:hidden bg-white/10 backdrop-blur-md border-t border-white/20 shadow-xl">
             <div className="px-6 py-6 space-y-4">
               {NAVIGATION_CONFIG.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`block w-full text-left py-3 px-4 text-base font-semibold transition-all duration-300 text-gray-900 hover:text-gray-700 group relative`}
+                  className={`block w-full text-left py-3 px-4 text-base font-semibold transition-all duration-300 text-white hover:text-gray-200 drop-shadow-md group relative`}
                 >
                   {item.name}
                   {/* Sublinhado suave no hover - mobile */}
-                  <span className="absolute bottom-2 left-4 w-0 h-0.5 bg-gray-700 rounded-full transition-all duration-300 group-hover:w-6"></span>
+                  <span className="absolute bottom-2 left-4 w-0 h-0.5 bg-white rounded-full transition-all duration-300 group-hover:w-6"></span>
                 </button>
               ))}
             </div>
