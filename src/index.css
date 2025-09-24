@@ -679,7 +679,7 @@ All colors MUST be HSL for optimal theming.
   }
 
   .service-card-silver:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: translateY(-4px);
     box-shadow: 0 0 24px 8px #23232333, 0 0 0 10px #fff inset, inset 0 0 16px 2px #23232333;
   border: 1px solid #232323; /* Borda dark-gray plena no hover */
     background: #fff;
@@ -750,7 +750,7 @@ All colors MUST be HSL for optimal theming.
   }
 
   .service-card-silver:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-12px);
     border-color: hsl(var(--accent-silver));
     box-shadow: 
       0 25px 50px -12px hsl(var(--accent-silver)/0.3),
@@ -787,7 +787,7 @@ All colors MUST be HSL for optimal theming.
   }
 
   .service-card-beige:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-8px);
     box-shadow:
       0 0 32px 10px hsl(var(--accent-beige-light) / 0.25),
       0 0 0 12px #fff inset,
@@ -801,11 +801,10 @@ All colors MUST be HSL for optimal theming.
     );
   }
 
-  /* Bordas suaves ao hover/scale para os cards */
 .service-card-silver:hover,
 .service-card-silver:active,
 .service-card-silver:focus {
-  transform: translateY(-12px) scale(1.02);
+  transform: translateY(-12px);
   border: 1.5px solid hsl(var(--accent-silver) / 0.7);
   box-shadow: 0 12px 30px -10px hsl(var(--accent-silver) / 0.25), 0 0 0 4px rgba(255,255,255,0.6) inset;
 }
@@ -816,7 +815,7 @@ All colors MUST be HSL for optimal theming.
 .service-card-gold:hover,
 .service-card-gold:active,
 .service-card-gold:focus {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px);
   border: 1.5px solid hsla(28, 47%, 76%, 1); /* destaque suave beige/gold */
   box-shadow: 0 20px 40px -20px hsla(28, 47%, 76%, 0.18), 0 0 0 6px rgba(255,255,255,0.85) inset;
 }
@@ -1272,7 +1271,7 @@ All colors MUST be HSL for optimal theming.
 }
 
 .modern-service-card-silver:hover {
-  transform: translateY(-12px) scale(1.02);
+  transform: translateY(-12px);
   box-shadow: 
     0 20px 60px rgba(148, 163, 184, 0.3),
     0 12px 40px rgba(100, 116, 139, 0.2),
@@ -1392,7 +1391,7 @@ All colors MUST be HSL for optimal theming.
 }
 
 .modern-service-card-beige:hover {
-  transform: translateY(-12px) scale(1.02);
+  transform: translateY(-12px);
   box-shadow: 
     0 20px 60px rgba(210, 190, 170, 0.25),
     0 12px 40px rgba(195, 175, 155, 0.15),
@@ -1450,7 +1449,7 @@ All colors MUST be HSL for optimal theming.
 }
 
 .modern-service-card-beige .modern-card-subtitle {
-  color: hsl(var(--accent-beige-dark));
+  color: hsla(28, 45%, 45%, 0.8); /* Tom dourado escuro com opacidade reduzida */
 }
 
 .modern-card-description {
@@ -1546,9 +1545,8 @@ All colors MUST be HSL for optimal theming.
   transition: left 0.6s ease;
 }
 
-/* Hover padrão (para card beige/premium) */
 .modern-cta-button:hover {
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   background: linear-gradient(135deg, hsl(var(--accent-gold)) 0%, hsl(var(--accent-gold-dark)) 100%);
 }
@@ -1557,6 +1555,12 @@ All colors MUST be HSL for optimal theming.
 .modern-service-card-silver .modern-cta-button:hover {
   background: linear-gradient(135deg, #000 0%, #222 100%);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover específico para card beige (Consultoria Premium) - mantém cores originais */
+.modern-service-card-beige .modern-cta-button:hover {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .modern-cta-button:hover::before {

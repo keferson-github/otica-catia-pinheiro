@@ -165,13 +165,11 @@ const ServiceCards = () => {
             variants={cardVariants}
             whileHover={{ 
               y: -12,
-              scale: 1.01,
               transition: { 
                 duration: 0.3,
                 ease: "easeOut"
               }
             }}
-            whileTap={{ scale: 0.98 }}
           >
             {/* Floating background elements */}
             <motion.div 
@@ -266,10 +264,8 @@ const ServiceCards = () => {
                   className="modern-cta-button"
                   variants={itemVariants}
                   whileHover={{ 
-                    scale: 1.05,
                     boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
                   }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <span>Atendimento Loja</span>
                   <ArrowRight size={16} className="modern-cta-icon" />
@@ -284,13 +280,11 @@ const ServiceCards = () => {
             variants={cardVariants}
             whileHover={{ 
               y: -12,
-              scale: 1.01,
               transition: { 
                 duration: 0.3,
                 ease: "easeOut"
               }
             }}
-            whileTap={{ scale: 0.98 }}
           >
             <div className="modern-service-card-beige h-full relative">
               {/* Floating Elements */}
@@ -351,10 +345,8 @@ const ServiceCards = () => {
                   className="modern-cta-button"
                   variants={itemVariants}
                   whileHover={{ 
-                    scale: 1.05,
                     boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
                   }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <span>Agendar Consultoria</span>
                   <ArrowRight size={16} className="modern-cta-icon" />
@@ -375,7 +367,6 @@ const ServiceCards = () => {
           <motion.div 
             className="inline-flex items-center gap-4 px-6 py-3 bg-accent-silver/20 rounded-full border border-accent-silver/30"
             whileHover={{ 
-              scale: 1.05,
               backgroundColor: "rgba(169, 169, 169, 0.3)"
             }}
             transition={{ duration: 0.2 }}
@@ -386,8 +377,6 @@ const ServiceCards = () => {
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-sm font-semibold text-accent-gold hover:text-accent-gold-dark transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
             >
               Fale conosco
             </motion.a>
