@@ -14,7 +14,7 @@
 }
 /* Títulos e subtítulos dos cards sempre destacados em preto, inclusive no hover */
 .highlight-beige {
-  color: hsla(28, 47%, 76%, 1) !important;
+  color: hsla(28, 47%, 65%, 1) !important;
   font-weight: 700;
 }
 .service-card-beige h3,
