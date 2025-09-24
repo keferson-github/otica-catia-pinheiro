@@ -61,6 +61,7 @@ const AboutSection = () => {
 
   return (
     <motion.section 
+      id="sobre"
       ref={(el) => {
         sectionRef.current = el;
         aboutRef.current = el;
@@ -146,7 +147,7 @@ const AboutSection = () => {
               variants={textVariants}
               custom={2}
             >
-              Cada consulta é uma jornada personalizada onde analisamos seu formato de rosto, 
+              Cada consultoria é uma jornada personalizada onde analisamos seu formato de rosto, 
               estilo de vida e preferências para criar a combinação ideal entre funcionalidade e estética.
             </motion.p>
             
