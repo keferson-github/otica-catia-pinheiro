@@ -1,5 +1,4 @@
-import visagismStyle from "@/assets/estilo-card.jpg";
-import visagismAuthenticity from "@/assets/autenticidade-card-new.jpg";
+import visagismStyle from "/img/estilo-cap.webp";
 import visagismTechnology from "@/assets/tecnologia-card.jpg";
 
 const VisagismSection = () => {
@@ -10,7 +9,7 @@ const VisagismSection = () => {
       description: "Análise completa do seu formato de rosto e características faciais para encontrar o design perfeito"
     },
     {
-      image: visagismAuthenticity,
+      image: "/img/autenticidade-cap.webp",
       title: "Autenticidade",
       description: "Harmonia perfeita entre sua personalidade única e a escolha dos óculos ideais"
     },

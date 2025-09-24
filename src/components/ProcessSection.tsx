@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Search, Palette, CheckCircle } from "lucide-react";
-import consultationProcess from "@/assets/consultation-process.jpg";
-import frameSelection from "@/assets/frame-selection.jpg";
 
 const ProcessSection = () => {
   const sectionRef = useRef(null);
@@ -45,21 +43,21 @@ const ProcessSection = () => {
       number: "01",
       title: "Análise do formato do rosto e traços faciais",
       description: "Identificação das armações que favorecem sua fisionomia única, considerando proporções e características marcantes.",
-      image: consultationProcess
+      image: "/img/sobre-cap.webp"
     },
     {
       icon: Palette,
       number: "02", 
       title: "Harmonização das cores e materiais",
       description: "Óculos que complementam sua aparência, estilo pessoal e garantem que transmitam a mensagem certa.",
-      image: frameSelection
+      image: "/img/harmonizacao-cap.webp"
     },
     {
       icon: CheckCircle,
       number: "03",
       title: "Escolha das lentes ideais",
       description: "Uso de tecnologia avançada para garantir máxima saúde ocular, conforto e qualidade de vida visual.",
-      image: null
+      image: "/img/lentes-cap.webp"
     }
   ];
 

@@ -4,7 +4,7 @@ import Heart from "lucide-react/dist/esm/icons/heart";
 import Glasses from "lucide-react/dist/esm/icons/glasses";
 import Cpu from "lucide-react/dist/esm/icons/cpu";
 import Crown from "lucide-react/dist/esm/icons/crown";
-import clientExperience from "@/assets/client-experience.jpg";
+import clientExperience from "/img/resultados-cap.webp";
 import { useCountUpOnView } from "@/hooks/use-count-up";
 import { useScrollTrigger, useStaggeredScrollTrigger } from "@/hooks/useScrollTrigger";
 
@@ -120,6 +120,7 @@ const BenefitsSection = () => {
   return (
     <motion.section 
       ref={sectionRef}
+      id="beneficios"
       className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden"
       style={{ opacity }}
     >

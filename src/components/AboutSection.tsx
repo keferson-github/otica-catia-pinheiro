@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import consultationProcess from "@/assets/consultation-process.jpg";
 import { useCountUpOnView } from "@/hooks/use-count-up";
 import { useOptimizedVariants, useReducedMotion } from "@/hooks/useOptimizedAnimation";
 import { useScrollTrigger } from "@/hooks/useScrollTrigger";
@@ -98,7 +97,7 @@ const AboutSection = () => {
               {/* Main image */}
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                 <img 
-                  src={consultationProcess} 
+                  src="/img/sobre-cap.webp" 
                   alt="Processo de Consultoria Personalizada" 
                   className="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
                 />
