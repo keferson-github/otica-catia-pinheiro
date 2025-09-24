@@ -20,7 +20,8 @@ const NAVIGATION_CONFIG = [
   { name: 'Sobre', href: '#sobre' },
   { name: 'Visagismo', href: '#visagismo' },
   { name: 'Como Funciona', href: '#como-funciona' },
-  { name: 'Benefícios', href: '#beneficios' }
+  { name: 'Benefícios', href: '#beneficios' },
+  { name: 'Localização', href: '#localizacao' }
 ] as const;
 
 const WHATSAPP_CONFIG = {
