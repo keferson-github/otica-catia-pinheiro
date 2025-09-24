@@ -17,9 +17,9 @@ const isActiveSection = (href: string) => {
 const NAVIGATION_CONFIG = [
   { name: 'Início', href: '#' },
   { name: 'Serviços', href: '#servicos' },
+  { name: 'Sobre', href: '#sobre' },
   { name: 'Visagismo', href: '#visagismo' },
-  { name: 'Como Funciona', href: '#como-funciona' },
-  { name: 'Sobre', href: '#sobre' }
+  { name: 'Como Funciona', href: '#como-funciona' }
 ] as const;
 
 const WHATSAPP_CONFIG = {
