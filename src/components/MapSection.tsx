@@ -52,6 +52,7 @@ const MapSection = () => {
   return (
     <motion.section 
       ref={sectionRef}
+      id="localizacao"
       className="py-16 md:py-20 bg-gradient-to-b from-background to-accent-beige/30 relative overflow-hidden"
       style={{ opacity }}
     >
