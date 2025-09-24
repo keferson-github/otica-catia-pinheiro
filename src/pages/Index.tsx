@@ -5,6 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import VisagismSection from "@/components/VisagismSection";
 import ProcessSection from "@/components/ProcessSection";
 import BenefitsSection from "@/components/BenefitsSection";
+import MapSection from "@/components/MapSection";
 
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -20,6 +21,7 @@ const Index = () => {
       <VisagismSection />
       <ProcessSection />
       <BenefitsSection />
+      <MapSection />
       <Footer />
       <BackToTop />
       <WhatsAppFloat />
