@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import professionalism from "@/assets/professionalism.jpg";
 import frameSelection from "@/assets/frame-selection.jpg";
 import { useOptimizedVariants, useReducedMotion } from "@/hooks/useOptimizedAnimation";
 import { useScrollTrigger } from "@/hooks/useScrollTrigger";
@@ -254,7 +253,7 @@ const Hero = () => {
               {/* Main professional image */}
               <div className="w-[115%] -mx-6 sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[520px] h-[480px] sm:h-[480px] md:h-[550px] lg:h-[600px] xl:h-[750px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src={professionalism} 
+                  src="/img/hero-cap.webp" 
                   alt="Cátia Pinheiro - Especialista em Visagismo Óptico" 
                   className="w-full h-full object-cover object-center"
                 />
