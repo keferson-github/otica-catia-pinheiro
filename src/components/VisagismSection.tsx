@@ -1,5 +1,5 @@
 import visagismStyle from "/img/estilo-cap.webp";
-import visagismTechnology from "@/assets/tecnologia-card.jpg";
+import visagismTechnology from "/img/tecnologia-cap.webp";
 
 const VisagismSection = () => {
   const features = [
