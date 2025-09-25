@@ -1,4 +1,4 @@
-import { Eye, MessageCircle, ArrowRight } from "lucide-react";
+import { Eye, MessageCircle, ArrowRight, CheckCircle } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 const ServiceCards = () => {
@@ -250,7 +250,12 @@ const ServiceCards = () => {
                       variants={bulletVariants}
                       custom={index}
                     >
-                      <div className="modern-feature-bullet" />
+                      <motion.div 
+                        className="modern-feature-check-icon"
+                        variants={bulletVariants}
+                      >
+                        <CheckCircle size={16} className="text-black" />
+                      </motion.div>
                       {feature}
                     </motion.div>
                   ))}
@@ -331,7 +336,12 @@ const ServiceCards = () => {
                       variants={bulletVariants}
                       custom={index}
                     >
-                      <div className="modern-feature-bullet" />
+                      <motion.div 
+                        className="modern-feature-check-icon"
+                        variants={bulletVariants}
+                      >
+                        <CheckCircle size={16} className="text-black" />
+                      </motion.div>
                       {feature}
                     </motion.div>
                   ))}

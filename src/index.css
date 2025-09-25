@@ -1479,6 +1479,28 @@ All colors MUST be HSL for optimal theming.
   transition: all 0.3s ease;
 }
 
+/* Ícone de Check para Features */
+.modern-feature-check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modern-feature-item:hover .modern-feature-check-icon {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .modern-feature-bullet {
   width: 8px;
   height: 8px;
