@@ -305,7 +305,7 @@ const ServiceCards = () => {
                     variants={itemVariants}
                   >
                     Consultoria Premium
-                    <span className="modern-card-subtitle block">Visagismo Óptico</span>
+                    <span className="modern-card-subtitle block">Visagismo Óptico Completo</span>
                   </motion.h3>
                   <motion.p 
                     className="modern-card-description"
