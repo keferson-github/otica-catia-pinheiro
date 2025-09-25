@@ -230,7 +230,7 @@ const ServiceCards = () => {
                     className="modern-card-description"
                     variants={itemVariants}
                   >
-                    Encontre os óculos ideais através da nossa consultoria especializada em visagismo óptico, com atendimento personalizado e sem custo.
+                    Agende seu horário online e venha à loja escolher seus óculos ideais, 100% grátis na Ótica Cátia Pinheiro.
                   </motion.p>
                 </motion.div>
                 
@@ -240,7 +240,7 @@ const ServiceCards = () => {
                   variants={itemVariants}
                 >
                   {[
-                    "Análise facial personalizada",
+                    "As melhores marcas do mercado",
                     "Seleção de armações ideais", 
                     "Lentes de alta qualidade"
                   ].map((feature, index) => (
@@ -305,13 +305,13 @@ const ServiceCards = () => {
                     variants={itemVariants}
                   >
                     Consultoria Premium
-                    <span className="modern-card-subtitle block">Visagismo Personalizado</span>
+                    <span className="modern-card-subtitle block">Visagismo Óptico</span>
                   </motion.h3>
                   <motion.p 
                     className="modern-card-description"
                     variants={itemVariants}
                   >
-                    Transformação completa da sua imagem através de análise detalhada das suas características faciais e estilo pessoal. Agende agora seu horário!
+                    Agende um horário com a profissional Cátia Pinheiro para uma consultoria personalizada em visagismo óptico.
                   </motion.p>
                 </motion.div>
                 
