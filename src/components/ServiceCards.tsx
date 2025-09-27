@@ -256,7 +256,7 @@ const ServiceCards = () => {
                       >
                         <CheckCircle size={16} className="text-black" />
                       </motion.div>
-                      {feature}
+                      <span className="font-bold text-base text-primary">{feature}</span>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -351,7 +351,7 @@ const ServiceCards = () => {
                       >
                         <CheckCircle size={16} className="text-black" />
                       </motion.div>
-                      {feature}
+                      <span className="font-bold text-base text-primary">{feature}</span>
                     </motion.div>
                   ))}
                 </motion.div>
