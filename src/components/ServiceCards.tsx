@@ -318,6 +318,15 @@ const ServiceCards = () => {
                   >
                     Agende um horário com a profissional Cátia Pinheiro para uma consultoria personalizada em visagismo óptico.
                   </motion.p>
+                  
+                  {/* Price Value */}
+                  <motion.div 
+                    className="mt-6 mb-4"
+                    variants={itemVariants}
+                  >
+                    <p className="text-sm font-medium text-primary/70 mb-1">Investimento</p>
+                    <p className="text-4xl font-bold text-primary">R$ 390</p>
+                  </motion.div>
                 </motion.div>
                 
                 {/* Features */}
