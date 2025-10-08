@@ -93,25 +93,17 @@ const AboutSection = () => {
             }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="relative">
+            <div className="relative group">
               {/* Main image */}
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+              <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[600px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[420px] xl:h-[620px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                 <img 
-                  src="/img/sobre-cap.webp" 
+                  src="/img/nova-imagem-sobre-cap.webp" 
                   alt="Processo de Consultoria Personalizada" 
-                  className="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               
-              {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-accent-gold rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500 z-20">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent-blue/20 rounded-full blur-xl group-hover:bg-accent-blue/30 transition-colors duration-500"></div>
+              <div className="absolute -bottom-6 -left-6 w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[600px] h-32 bg-accent-blue/20 rounded-full blur-xl group-hover:bg-accent-blue/30 transition-colors duration-500"></div>
             </div>
           </motion.div>
           
