@@ -43,14 +43,14 @@ const ProcessSection = () => {
       number: "01",
       title: "Análise do formato do rosto e traços faciais",
       description: "Identificação das armações que favorecem sua fisionomia única, considerando proporções e características marcantes.",
-      image: "/img/sobre-cap.webp"
+      image: "/img/nova-foto-transformando-visoes(reduzida).webp"
     },
     {
       icon: Palette,
       number: "02", 
       title: "Harmonização das cores e materiais",
       description: "Óculos que complementam sua aparência, estilo pessoal e garantem que transmitam a mensagem certa.",
-      image: "/img/harmonizacao-cap.webp"
+      image: "/img/nova-foto-oculos-cap.webp"
     },
     {
       icon: CheckCircle,
@@ -143,7 +143,7 @@ const ProcessSection = () => {
                >
                  {step.image ? (
                    <div className="relative group">
-                     <div className="w-80 h-80 rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+                     <div className="w-80 h-[580px] sm:h-[480px] md:h-[550px] lg:h-[420px] xl:h-[580px] rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                        <img 
                          src={step.image} 
                          alt={step.title}
