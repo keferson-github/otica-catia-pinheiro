@@ -238,7 +238,7 @@ const Hero = () => {
           >
             <div className="relative">
               {/* Main professional image */}
-              <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[520px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[500px] xl:h-[750px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+              <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[600px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[420px] xl:h-[580px] xl:-mt-16 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                 <img 
                   src="/img/nova-foto-hero-landing-page-cap.webp" 
                   alt="Cátia Pinheiro - Especialista em Visagismo Óptico" 
