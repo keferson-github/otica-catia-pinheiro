@@ -85,34 +85,7 @@ const Hero = () => {
     >
 
 
-      {/* WhatsApp CTA Button */}
-      <motion.div 
-        className="hidden sm:block absolute top-20 md:top-26 lg:top-20 right-6 md:right-12 lg:right-16 xl:right-20 z-20"
-        initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ 
-          delay: prefersReducedMotion ? 0.2 : 0.8, 
-          duration: prefersReducedMotion ? 0.3 : 0.6 
-        }}
-        style={{ 
-          y: shouldUseComplexAnimations ? yButton : 0 
-        }}
-      >
-        <a 
-          href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de mais informações!"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-black text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full flex items-center gap-2 hover:bg-accent-gold transition-all duration-300 group text-sm md:text-base shadow-2xl hover:shadow-2xl"
-        >
-          <span className="hidden md:inline">Falar com nosso expert</span>
-          <span className="inline md:hidden">Expert</span>
-          <div className="w-5 sm:w-5 md:w-6 h-5 sm:h-5 md:h-6 bg-white rounded-full flex items-center justify-center">
-            <svg className="w-2.5 sm:w-2.5 md:w-3 h-2.5 sm:h-2.5 md:h-3 text-black transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5-5 5M6 12h12" />
-            </svg>
-          </div>
-        </a>
-      </motion.div>
+
 
       <div className="px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 pt-8 sm:pt-20 md:pt-24 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 md:pb-16">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
@@ -197,26 +170,25 @@ const Hero = () => {
               </motion.p>
             </div>
             
-            {/* Mobile WhatsApp Button */}
             {/* Botões de ação */}
             <motion.div 
-              className="space-y-4"
+              className="flex flex-col lg:flex-row gap-4 lg:gap-6"
               variants={staggerContainer}
             >
-              {/* Botão Falar com Expert - APENAS MOBILE */}
+              {/* Botão Falar com Expert - APENAS MOBILE (vertical) */}
               <motion.a 
                 href="https://wa.me/5511997712138?text=Olá! Gostaria de falar com um expert em óculos." 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="sm:hidden bg-black text-white px-4 py-2.5 rounded-full flex items-center justify-between hover:bg-accent-gold transition-all duration-300 group text-sm shadow-2xl hover:shadow-2xl w-64 mx-auto relative"
+                className="lg:hidden bg-black text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 flex items-center justify-between group mx-auto text-sm sm:text-base w-64 sm:w-64 md:w-auto shadow-2xl hover:shadow-2xl relative"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 variants={fadeInUp}
                 custom={8}
               >
-                <span className="flex-1 text-center">Falar com Expert</span>
-                <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center absolute right-3">
-                  <svg className="w-2.5 h-2.5 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="flex-1 text-center md:text-left">Falar com Expert</span>
+                <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center absolute right-3 md:relative md:right-auto md:ml-4">
+                  <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5-5 5M6 12h12" />
                   </svg>
                 </div>
@@ -238,6 +210,25 @@ const Hero = () => {
                   </svg>
                 </div>
               </motion.button>
+
+              {/* Botão Falar com Expert - APENAS DESKTOP (horizontal) */}
+              <motion.a 
+                href="https://wa.me/5511997712138?text=Olá! Gostaria de falar com um expert em óculos." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hidden lg:flex bg-black text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 items-center justify-between group text-sm sm:text-base w-64 sm:w-64 md:w-auto shadow-2xl hover:shadow-2xl relative"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                variants={fadeInUp}
+                custom={10}
+              >
+                <span className="flex-1 text-center md:text-left">Falar com Expert</span>
+                <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center absolute right-3 md:relative md:right-auto md:ml-4">
+                  <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5-5 5M6 12h12" />
+                  </svg>
+                </div>
+              </motion.a>
             </motion.div>
           </motion.div>
           
@@ -247,7 +238,7 @@ const Hero = () => {
           >
             <div className="relative">
               {/* Main professional image */}
-              <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[520px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[600px] xl:h-[750px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+              <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[520px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[500px] xl:h-[750px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                 <img 
                   src="/img/nova-foto-hero-landing-page-cap.webp" 
                   alt="Cátia Pinheiro - Especialista em Visagismo Óptico" 
