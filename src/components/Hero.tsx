@@ -83,41 +83,7 @@ const Hero = () => {
       animate={isVisible ? "visible" : "hidden"}
       variants={staggerContainer}
     >
-      {/* Navigation Pills */}
-      <motion.div 
-        className="absolute top-20 left-4 z-20 hidden sm:block"
-        style={{ 
-          y: shouldUseComplexAnimations ? y : 0, 
-          opacity: shouldUseComplexAnimations ? opacity : 1 
-        }}
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-      >
-        <div className="flex flex-row gap-2">
-          <motion.span 
-            className="px-3 md:px-4 py-1.5 md:py-2 bg-accent-silver/20 text-black text-sm rounded-full border border-accent-silver/30 text-center"
-            variants={fadeInUp}
-            custom={0}
-          >
-            Visagismo
-          </motion.span>
-          <motion.span 
-            className="px-3 md:px-4 py-1.5 md:py-2 bg-accent-gold/20 text-black text-sm rounded-full border border-accent-gold/30 text-center"
-            variants={fadeInUp}
-            custom={1}
-          >
-            Qualidade
-          </motion.span>
-          <motion.span 
-            className="px-3 md:px-4 py-1.5 md:py-2 bg-accent-silver/20 text-black text-sm rounded-full border border-accent-silver/30 inline-block"
-            variants={fadeInUp}
-            custom={2}
-          >
-            Experiência
-          </motion.span>
-        </div>
-      </motion.div>
+
 
       {/* WhatsApp CTA Button */}
       <motion.div 
@@ -192,10 +158,40 @@ const Hero = () => {
                 </motion.span>
               </motion.h1>
               
+              {/* Navigation Pills - Reposicionados abaixo do título */}
+              <motion.div 
+                className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 mt-4 sm:mt-6"
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+              >
+                <motion.span 
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-silver/20 text-black text-xs sm:text-sm rounded-full border border-accent-silver/30 text-center"
+                  variants={fadeInUp}
+                  custom={4}
+                >
+                  Visagismo
+                </motion.span>
+                <motion.span 
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-gold/20 text-black text-xs sm:text-sm rounded-full border border-accent-gold/30 text-center"
+                  variants={fadeInUp}
+                  custom={8}
+                >
+                  Qualidade
+                </motion.span>
+                <motion.span 
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-silver/20 text-black text-xs sm:text-sm rounded-full border border-accent-silver/30 text-center"
+                  variants={fadeInUp}
+                  custom={9}
+                >
+                  Experiência
+                </motion.span>
+              </motion.div>
+              
               <motion.p 
                 className="text-sm sm:text-base md:text-lg text-black/70 max-w-md mx-auto lg:mx-0 leading-relaxed px-0"
                 variants={fadeInUp}
-                custom={4}
+                custom={7}
               >
                 Descubra óculos que definem sua identidade — combinando precisão técnica, design sofisticado e conforto excepcional.
               </motion.p>
@@ -216,7 +212,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 variants={fadeInUp}
-                custom={5}
+                custom={8}
               >
                 <span className="flex-1 text-center">Falar com Expert</span>
                 <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center absolute right-3">
@@ -233,7 +229,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 variants={fadeInUp}
-                custom={6}
+                custom={9}
               >
                 <span className="flex-1 text-center md:text-left">Explorar produtos</span>
                 <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center absolute right-3 md:relative md:right-auto md:ml-4">
@@ -253,7 +249,7 @@ const Hero = () => {
               {/* Main professional image */}
               <div className="w-full max-w-md mx-auto sm:mx-auto sm:w-96 md:w-[420px] lg:w-[480px] xl:w-[520px] h-[580px] sm:h-[480px] md:h-[550px] lg:h-[600px] xl:h-[750px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/img/hero-cap.webp" 
+                  src="/img/nova-foto-hero-landing-page-cap.webp" 
                   alt="Cátia Pinheiro - Especialista em Visagismo Óptico" 
                   className="w-full h-full object-cover object-center"
                 />
