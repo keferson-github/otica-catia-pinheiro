@@ -5,6 +5,8 @@ import AboutSection from "@/components/AboutSection";
 import VisagismSection from "@/components/VisagismSection";
 import ProcessSection from "@/components/ProcessSection";
 import BenefitsSection from "@/components/BenefitsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import CTASection from "@/components/CTASection";
 import MapSection from "@/components/MapSection";
 
 import Footer from "@/components/Footer";
@@ -21,6 +23,8 @@ const Index = () => {
       <VisagismSection />
       <ProcessSection />
       <BenefitsSection />
+      <TestimonialsSection />
+      <CTASection />
       <MapSection />
       <Footer />
       <BackToTop />

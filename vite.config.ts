@@ -7,6 +7,11 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 5173,
+    // Configurações para servir arquivos grandes (vídeos)
+    middlewareMode: false,
+    fs: {
+      strict: false
+    }
   },
   plugins: [react()],
   resolve: {
@@ -14,6 +19,8 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Configurações para assets grandes
+  assetsInclude: ['**/*.mp4'],
   build: {
     rollupOptions: {
       onwarn(warning, warn) {
@@ -22,6 +29,9 @@ export default defineConfig(({ mode }) => ({
         if (warning.message && warning.message.includes('did not pass the `from` option')) return;
         warn(warning);
       }
-    }
+    },
+    // Aumenta o limite de tamanho para assets grandes
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 0 // Não fazer inline de assets grandes
   }
 }));
