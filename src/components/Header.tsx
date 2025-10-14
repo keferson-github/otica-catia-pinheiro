@@ -21,6 +21,7 @@ const NAVIGATION_CONFIG = [
   { name: 'Visagismo', href: '#visagismo' },
   { name: 'Como Funciona', href: '#como-funciona' },
   { name: 'Benefícios', href: '#beneficios' },
+  { name: 'Depoimentos', href: '#depoimentos' },
   { name: 'Localização', href: '#localizacao' }
 ] as const;
 
