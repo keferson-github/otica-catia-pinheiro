@@ -256,8 +256,8 @@ const TestimonialsSection = () => {
           </motion.p>
         </motion.div>
 
-        {/* Grid de vídeos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* Grid de vídeos - Desktop: Grid / Mobile: Carrossel */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -450,6 +450,219 @@ const TestimonialsSection = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Carrossel Mobile */}
+        <div className="sm:hidden">
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={`mobile-${testimonial.id}`}
+                  className="group relative flex-shrink-0"
+                  style={{ width: '280px' }}
+                  variants={videoVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {/* Container do vídeo */}
+                  <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-accent-beige/10 shadow-elegant">
+                    <video
+                      className="w-full h-full object-cover"
+                      muted={videoStates[testimonial.id].isMuted}
+                      loop
+                      playsInline
+                      webkit-playsinline="true"
+                      preload="metadata"
+                      controls={isIOSSafari()}
+                      onLoadedData={() => {
+                        console.log(`Vídeo ${testimonial.name} carregado com sucesso`);
+                      }}
+                      onLoadedMetadata={(e) => {
+                        const video = e.currentTarget;
+                        setVideoStates(prev => ({
+                          ...prev,
+                          [testimonial.id]: { 
+                            ...prev[testimonial.id], 
+                            duration: video.duration 
+                          }
+                        }));
+                      }}
+                      onTimeUpdate={(e) => {
+                        const video = e.currentTarget;
+                        setVideoStates(prev => ({
+                          ...prev,
+                          [testimonial.id]: { 
+                            ...prev[testimonial.id], 
+                            currentTime: video.currentTime 
+                          }
+                        }));
+                      }}
+                      onError={(e) => {
+                        console.error(`Erro ao carregar vídeo ${testimonial.name}:`, e);
+                      }}
+                      onEnded={() => {
+                        setVideoStates(prev => ({
+                          ...prev,
+                          [testimonial.id]: { 
+                            ...prev[testimonial.id], 
+                            isPlaying: false 
+                          }
+                        }));
+                      }}
+                    >
+                      {getVideoSources(testimonial.videoSrc).map((source, idx) => (
+                        <source key={idx} src={source.src} type={source.type} />
+                      ))}
+                    </video>
+
+                    {/* Controles customizados - ocultos no iOS Safari */}
+                    <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 transition-opacity duration-300 ${isIOSSafari() ? 'opacity-0 pointer-events-none' : ''}`}>
+                      {/* Barra de progresso */}
+                      <div className="mb-3 group/progress">
+                        <div 
+                          className="relative w-full h-1 bg-white/30 rounded-full cursor-pointer"
+                          onClick={(e) => {
+                            const video = e.currentTarget.closest('.group')?.querySelector('video') as HTMLVideoElement;
+                            if (video && videoStates[testimonial.id].duration > 0) {
+                              const rect = e.currentTarget.getBoundingClientRect();
+                              const clickX = e.clientX - rect.left;
+                              const newTime = (clickX / rect.width) * videoStates[testimonial.id].duration;
+                              handleSeek(testimonial.id, video, newTime);
+                            }
+                          }}
+                          role="slider"
+                          aria-label={`Barra de progresso do vídeo ${testimonial.name}`}
+                          aria-valuemin={0}
+                          aria-valuemax={videoStates[testimonial.id].duration}
+                          aria-valuenow={videoStates[testimonial.id].currentTime}
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                              e.preventDefault();
+                              const video = e.currentTarget.closest('.group')?.querySelector('video') as HTMLVideoElement;
+                              if (video && videoStates[testimonial.id].duration > 0) {
+                                const step = videoStates[testimonial.id].duration * 0.05;
+                                const newTime = e.key === 'ArrowRight' 
+                                  ? Math.min(videoStates[testimonial.id].currentTime + step, videoStates[testimonial.id].duration)
+                                  : Math.max(videoStates[testimonial.id].currentTime - step, 0);
+                                handleSeek(testimonial.id, video, newTime);
+                              }
+                            }
+                          }}
+                        >
+                          <div 
+                            className="absolute top-0 left-0 h-full bg-white rounded-full transition-all duration-150"
+                            style={{ 
+                              width: videoStates[testimonial.id].duration > 0 
+                                ? `${(videoStates[testimonial.id].currentTime / videoStates[testimonial.id].duration) * 100}%` 
+                                : '0%' 
+                            }}
+                          />
+                          <div 
+                            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 focus-within:opacity-100 transition-opacity duration-200"
+                            style={{ 
+                              left: videoStates[testimonial.id].duration > 0 
+                                ? `${(videoStates[testimonial.id].currentTime / videoStates[testimonial.id].duration) * 100}%` 
+                                : '0%',
+                              transform: 'translateX(-50%) translateY(-50%)'
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        {/* Botão Play/Pause */}
+                        <button
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const video = e.currentTarget.closest('.group')?.querySelector('video') as HTMLVideoElement;
+                            if (video) {
+                              await togglePlayPause(testimonial.id, video);
+                            }
+                          }}
+                          className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-200 cursor-pointer"
+                          aria-label={videoStates[testimonial.id].isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
+                        >
+                          {videoStates[testimonial.id].isPlaying ? (
+                            <Pause className="w-5 h-5 text-white" />
+                          ) : (
+                            <Play className="w-5 h-5 text-white ml-0.5" />
+                          )}
+                        </button>
+                        
+                        {/* Timer */}
+                        <div className="text-white text-sm font-medium">
+                          {formatTime(videoStates[testimonial.id].currentTime)} / {formatTime(videoStates[testimonial.id].duration)}
+                        </div>
+                        
+                        {/* Botão Mute/Unmute */}
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const video = e.currentTarget.closest('.group')?.querySelector('video') as HTMLVideoElement;
+                            if (video) {
+                              toggleMute(testimonial.id, video);
+                            }
+                          }}
+                          className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-200 cursor-pointer"
+                          aria-label={videoStates[testimonial.id].isMuted ? "Ativar som" : "Desativar som"}
+                        >
+                          {videoStates[testimonial.id].isMuted ? (
+                            <VolumeX className="w-5 h-5 text-white" />
+                          ) : (
+                            <Volume2 className="w-5 h-5 text-white" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Botão de play central - oculto no iOS Safari */}
+                    {!videoStates[testimonial.id].isPlaying && !isIOSSafari() && (
+                      <div 
+                        className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300 cursor-pointer"
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          const video = e.currentTarget.closest('.group')?.querySelector('video') as HTMLVideoElement;
+                          if (video) {
+                            await togglePlayPause(testimonial.id, video);
+                          }
+                        }}
+                      >
+                        <div className="flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white/95 transition-colors duration-200">
+                          <Play className="w-6 h-6 text-primary ml-1" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Informações do depoimento */}
+                  <div className="mt-4 text-center space-y-2">
+                    <h3 className="font-semibold text-lg text-primary">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-sm text-client-satisfied font-semibold">
+                      {testimonial.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {testimonial.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Indicador de scroll */}
+          <div className="flex justify-center mt-4">
+            <div className="flex items-center gap-2 px-3 py-1 bg-accent-beige/20 rounded-full">
+              <div className="w-2 h-2 bg-accent-beige-dark rounded-full animate-pulse"></div>
+              <span className="text-xs text-muted-foreground">Deslize para ver mais</span>
+            </div>
+          </div>
         </div>
 
 
