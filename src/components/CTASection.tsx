@@ -1,5 +1,6 @@
 import { ArrowRight, Eye } from "lucide-react";
 import { motion } from "framer-motion";
+import { handleScheduleConsultation } from "../utils/scrollUtils";
 
 const CTASection = () => {
   return (
@@ -89,9 +90,9 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <motion.a 
-              href="#servicos"
-              className="inline-flex items-center gap-4 px-8 py-6 bg-gradient-to-r from-accent-beige via-accent-beige-dark to-accent-beige text-primary font-bold text-lg rounded-3xl transition-all duration-500 hover:shadow-2xl hover:shadow-accent-beige/30 hover:-translate-y-2 hover:scale-[1.02] group relative overflow-hidden shadow-xl"
+            <motion.button 
+              onClick={handleScheduleConsultation}
+              className="inline-flex items-center gap-4 px-8 py-6 bg-gradient-to-r from-accent-beige via-accent-beige-dark to-accent-beige text-primary font-bold text-lg rounded-3xl transition-all duration-500 hover:shadow-2xl hover:shadow-accent-beige/30 hover:-translate-y-2 hover:scale-[1.02] group relative overflow-hidden shadow-xl cursor-pointer"
               whileHover={{ 
                 boxShadow: "0 25px 50px -12px rgba(218, 165, 32, 0.25)"
               }}
@@ -100,7 +101,7 @@ const CTASection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               <span className="relative">Agende sua Consulta</span>
               <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform duration-300 relative" />
-            </motion.a>
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>

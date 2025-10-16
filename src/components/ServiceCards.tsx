@@ -146,6 +146,7 @@ const ServiceCards = () => {
         
         {/* Services Grid */}
         <motion.div 
+          id="services-cards"
           className="grid md:grid-cols-2 gap-3 sm:gap-6 md:gap-12 max-w-6xl mx-auto" 
           onMouseMove={handleMouseMove}
           initial="hidden"
@@ -290,6 +291,7 @@ const ServiceCards = () => {
 
           {/* Service 2 - Premium Gold Card with Enhanced Background Effects */}
           <motion.div 
+            id="consultoria-premium"
             className="group relative"
             variants={cardVariants}
             whileHover={{ 
