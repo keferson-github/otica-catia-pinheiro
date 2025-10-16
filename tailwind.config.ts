@@ -40,6 +40,7 @@ const config: Config = {
           dark: "hsl(var(--accent-silver-dark))",
           light: "hsl(var(--accent-silver-light))",
         },
+        "client-satisfied": "#d0a37c",
         "hero-bg": "hsl(var(--hero-bg))",
         "hero-overlay": "hsl(var(--hero-overlay))",
         destructive: {

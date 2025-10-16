@@ -441,7 +441,7 @@ const TestimonialsSection = () => {
                 <h3 className="font-semibold text-lg text-primary">
                   {testimonial.name}
                 </h3>
-                <p className="text-sm text-accent-beige-dark font-medium">
+                <p className="text-sm text-client-satisfied font-semibold">
                   {testimonial.title}
                 </p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
