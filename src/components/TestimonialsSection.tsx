@@ -5,6 +5,7 @@ import Pause from "lucide-react/dist/esm/icons/pause";
 import Volume2 from "lucide-react/dist/esm/icons/volume-2";
 import VolumeX from "lucide-react/dist/esm/icons/volume-x";
 import { useScrollTrigger, useStaggeredScrollTrigger } from "@/hooks/useScrollTrigger";
+import { isIOS, isIOSSafari, getVideoSources } from "@/utils/deviceDetection";
 
 const TestimonialsSection = () => {
   // Refs para efeitos parallax
@@ -118,15 +119,31 @@ const TestimonialsSection = () => {
       const newState = !videoStates[videoId].isPlaying;
       
       if (newState) {
-        // Garantir que o vídeo está carregado antes de tentar reproduzir
-        if (videoElement.readyState < 2) {
-          await new Promise((resolve) => {
-            const onCanPlay = () => {
-              videoElement.removeEventListener('canplay', onCanPlay);
-              resolve(void 0);
-            };
-            videoElement.addEventListener('canplay', onCanPlay);
-          });
+        // Tratamento específico para iOS
+        if (isIOS()) {
+          // No iOS, precisamos de interação do usuário para iniciar o vídeo
+          // Garantir que o vídeo está carregado
+          if (videoElement.readyState < 2) {
+            videoElement.load(); // Força o carregamento no iOS
+            await new Promise((resolve) => {
+              const onCanPlay = () => {
+                videoElement.removeEventListener('canplay', onCanPlay);
+                resolve(void 0);
+              };
+              videoElement.addEventListener('canplay', onCanPlay);
+            });
+          }
+        } else {
+          // Garantir que o vídeo está carregado antes de tentar reproduzir
+          if (videoElement.readyState < 2) {
+            await new Promise((resolve) => {
+              const onCanPlay = () => {
+                videoElement.removeEventListener('canplay', onCanPlay);
+                resolve(void 0);
+              };
+              videoElement.addEventListener('canplay', onCanPlay);
+            });
+          }
         }
         
         const playPromise = videoElement.play();
@@ -143,6 +160,12 @@ const TestimonialsSection = () => {
       }));
     } catch (error) {
       console.error('Erro ao reproduzir vídeo:', error);
+      
+      // Tratamento específico de erro para iOS
+      if (isIOS() && error.name === 'NotAllowedError') {
+        console.warn('Reprodução bloqueada no iOS - necessária interação do usuário');
+      }
+      
       // Em caso de erro, manter o estado anterior
       setVideoStates(prev => ({
         ...prev,
@@ -248,11 +271,12 @@ const TestimonialsSection = () => {
               <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-accent-beige/10 shadow-elegant group-hover:shadow-xl transition-all duration-500">
                 <video
                   className="w-full h-full object-cover"
-                  src={testimonial.videoSrc}
                   muted={videoStates[testimonial.id].isMuted}
                   loop
                   playsInline
+                  webkit-playsinline="true"
                   preload="metadata"
+                  controls={isIOSSafari()} // Mostrar controles nativos no iOS Safari para melhor compatibilidade
                   onLoadedData={() => {
                     console.log(`Vídeo ${testimonial.name} carregado com sucesso`);
                   }}
@@ -283,10 +307,17 @@ const TestimonialsSection = () => {
                     ...prev,
                     [testimonial.id]: { ...prev[testimonial.id], isPlaying: false }
                   }))}
-                />
+                >
+                  {/* Múltiplos formatos para compatibilidade */}
+                  {getVideoSources(testimonial.videoSrc).map((source, index) => (
+                    <source key={index} src={source.src} type={source.type} />
+                  ))}
+                  {/* Fallback para navegadores muito antigos */}
+                  <p>Seu navegador não suporta reprodução de vídeo.</p>
+                </video>
                 
                 {/* Overlay com controles */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent ${isIOSSafari() ? 'opacity-0 pointer-events-none' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-300`}>
                   <div className="absolute bottom-4 left-4 right-4">
                     {/* Barra de Progressão */}
                     <div className="mb-3">
@@ -386,7 +417,7 @@ const TestimonialsSection = () => {
                 </div>
 
                 {/* Indicador de play quando não está em hover */}
-                {!videoStates[testimonial.id].isPlaying && (
+                {!videoStates[testimonial.id].isPlaying && !isIOSSafari() && (
                   <div 
                     className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300 cursor-pointer"
                     onClick={async (e) => {
