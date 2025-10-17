@@ -5,7 +5,7 @@ import Pause from "lucide-react/dist/esm/icons/pause";
 import Volume2 from "lucide-react/dist/esm/icons/volume-2";
 import VolumeX from "lucide-react/dist/esm/icons/volume-x";
 import { useScrollTrigger, useStaggeredScrollTrigger } from "@/hooks/useScrollTrigger";
-import { isIOS, isIOSSafari, getVideoSources } from "@/utils/deviceDetection";
+import { isIOS, isIOSSafari } from "@/utils/deviceDetection";
 
 const TestimonialsSection = () => {
   // Refs para efeitos parallax
@@ -35,28 +35,28 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 0,
-      videoSrc: "/video_depoimento/depoimento_jeferson.webm",
+      videoSrc: "/video_depoimento/depoimento_jeferson.mp4",
       name: "Jeferson",
       title: "Cliente Satisfeito",
       description: "Experiência transformadora com o visagismo"
     },
     {
       id: 1,
-      videoSrc: "/video_depoimento/depoimento_natalia.webm",
+      videoSrc: "/video_depoimento/depoimento_natalia.mp4",
       name: "Natalia",
       title: "Cliente Satisfeita",
       description: "Atendimento personalizado e resultado incrível"
     },
     {
       id: 2,
-      videoSrc: "/video_depoimento/depoimento_gisele.webm",
+      videoSrc: "/video_depoimento/depoimento_gisele.mp4",
       name: "Gisele",
       title: "Cliente Satisfeita",
       description: "Profissionalismo e cuidado em cada detalhe"
     },
     {
       id: 3,
-      videoSrc: "/video_depoimento/depoimento_camila.webm",
+      videoSrc: "/video_depoimento/depoimento_camila.mp4",
       name: "Camila",
       title: "Cliente Satisfeita",
       description: "Transformação completa da minha imagem"
@@ -308,10 +308,8 @@ const TestimonialsSection = () => {
                     [testimonial.id]: { ...prev[testimonial.id], isPlaying: false }
                   }))}
                 >
-                  {/* Múltiplos formatos para compatibilidade */}
-                  {getVideoSources(testimonial.videoSrc).map((source, index) => (
-                    <source key={index} src={source.src} type={source.type} />
-                  ))}
+                  {/* Vídeo MP4 para compatibilidade universal */}
+                  <source src={testimonial.videoSrc} type="video/mp4" />
                   {/* Fallback para navegadores muito antigos */}
                   <p>Seu navegador não suporta reprodução de vídeo.</p>
                 </video>
@@ -511,9 +509,7 @@ const TestimonialsSection = () => {
                         }));
                       }}
                     >
-                      {getVideoSources(testimonial.videoSrc).map((source, idx) => (
-                        <source key={idx} src={source.src} type={source.type} />
-                      ))}
+                      <source src={testimonial.videoSrc} type="video/mp4" />
                     </video>
 
                     {/* Controles customizados - ocultos no iOS Safari */}
