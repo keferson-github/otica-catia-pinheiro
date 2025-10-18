@@ -369,7 +369,7 @@ const ServiceCards = () => {
                 
                 {/* CTA Button */}
                 <motion.a 
-                  href="https://wa.me/5511997712138?text=Olá! Gostaria de agendar uma consultoria de visagismo óptico." 
+                  href="https://www.asaas.com/c/nc1a7e89z2o00z1s" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="modern-cta-button"
