@@ -39,11 +39,37 @@ export const getBestVideoFormat = (basePath: string): string => {
 
 /**
  * Retorna múltiplos formatos para fallback
+ * MP4 como formato principal (compatibilidade universal)
+ * WebM como fallback para otimização em navegadores compatíveis
  */
 export const getVideoSources = (basePath: string) => {
-  const mp4Path = basePath.replace('.webm', '.mp4');
-  const webmPath = basePath;
+  // Remove extensão para gerar ambos os formatos
+  const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
+  const mp4Path = `${basePathWithoutExt}.mp4`;
+  const webmPath = `${basePathWithoutExt}.webm`;
   
+  return [
+    { src: mp4Path, type: 'video/mp4' },
+    { src: webmPath, type: 'video/webm' }
+  ];
+};
+
+/**
+ * Gera sources de vídeo otimizados por dispositivo
+ * iOS/Safari: apenas MP4 (melhor compatibilidade)
+ * Outros: MP4 principal + WebM fallback (otimização)
+ */
+export const getOptimizedVideoSources = (basePath: string) => {
+  const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
+  const mp4Path = `${basePathWithoutExt}.mp4`;
+  const webmPath = `${basePathWithoutExt}.webm`;
+  
+  if (isIOS() || isSafari()) {
+    // iOS e Safari: apenas MP4 para máxima compatibilidade
+    return [{ src: mp4Path, type: 'video/mp4' }];
+  }
+  
+  // Outros navegadores: MP4 principal + WebM para otimização
   return [
     { src: mp4Path, type: 'video/mp4' },
     { src: webmPath, type: 'video/webm' }

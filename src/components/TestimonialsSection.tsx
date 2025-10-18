@@ -5,7 +5,7 @@ import Pause from "lucide-react/dist/esm/icons/pause";
 import Volume2 from "lucide-react/dist/esm/icons/volume-2";
 import VolumeX from "lucide-react/dist/esm/icons/volume-x";
 import { useScrollTrigger, useStaggeredScrollTrigger } from "@/hooks/useScrollTrigger";
-import { isIOS, isIOSSafari } from "@/utils/deviceDetection";
+import { isIOS, isIOSSafari, getOptimizedVideoSources } from "@/utils/deviceDetection";
 
 const TestimonialsSection = () => {
   // Refs para efeitos parallax
@@ -324,8 +324,10 @@ const TestimonialsSection = () => {
                     console.warn(`Vídeo ${testimonial.name} travou durante o carregamento`);
                   }}
                 >
-                  {/* Vídeo MP4 para compatibilidade universal */}
-                  <source src={testimonial.videoSrc} type="video/mp4" />
+                  {/* Sources otimizadas: MP4 principal + WebM fallback */}
+                  {getOptimizedVideoSources(testimonial.videoSrc).map((source, sourceIndex) => (
+                    <source key={sourceIndex} src={source.src} type={source.type} />
+                  ))}
                   {/* Fallback para navegadores muito antigos */}
                   <p>Seu navegador não suporta reprodução de vídeo.</p>
                 </video>
@@ -541,7 +543,12 @@ const TestimonialsSection = () => {
                         console.warn(`Vídeo ${testimonial.name} travou durante o carregamento`);
                       }}
                     >
-                      <source src={testimonial.videoSrc} type="video/mp4" />
+                      {/* Sources otimizadas: MP4 principal + WebM fallback */}
+                      {getOptimizedVideoSources(testimonial.videoSrc).map((source, sourceIndex) => (
+                        <source key={sourceIndex} src={source.src} type={source.type} />
+                      ))}
+                      {/* Fallback para navegadores muito antigos */}
+                      <p>Seu navegador não suporta reprodução de vídeo.</p>
                     </video>
 
                     {/* Controles customizados - ocultos no iOS Safari */}
