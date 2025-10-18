@@ -28,50 +28,32 @@ export const supportsMP4 = (): boolean => {
  * Retorna o melhor formato de vídeo suportado pelo dispositivo
  */
 export const getBestVideoFormat = (basePath: string): string => {
-  if (isIOS() || isSafari()) {
-    // iOS e Safari preferem MP4
-    return basePath.replace('.webm', '.mov');
-  }
-  
-  // Outros navegadores podem usar WebM (mais eficiente)
-  return basePath;
+  // Todos os dispositivos usam MP4
+  return basePath.replace(/\.(webm|mov)$/, '.mp4');
 };
 
 /**
  * Retorna múltiplos formatos para fallback
- * MP4 como formato principal (compatibilidade universal)
- * WebM como fallback para otimização em navegadores compatíveis
+ * Apenas MP4 disponível no momento
  */
 export const getVideoSources = (basePath: string) => {
-  // Remove extensão para gerar ambos os formatos
-  const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
-  const movPath = `${basePathWithoutExt}.mov`;
-  const webmPath = `${basePathWithoutExt}.webm`;
+  // Remove extensão para gerar o formato MP4
+  const basePathWithoutExt = basePath.replace(/\.(mp4|webm|mov)$/, '');
+  const mp4Path = `${basePathWithoutExt}.mp4`;
   
   return [
-    { src: movPath, type: 'video/quicktime' },
-    { src: webmPath, type: 'video/webm' }
+    { src: mp4Path, type: 'video/mp4' }
   ];
 };
 
 /**
  * Gera sources de vídeo otimizados por dispositivo
- * iOS/Safari: apenas MP4 (melhor compatibilidade)
- * Outros: MP4 principal + WebM fallback (otimização)
+ * Todos os dispositivos: apenas MP4 (formato disponível)
  */
 export const getOptimizedVideoSources = (basePath: string) => {
-  const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
-  const movPath = `${basePathWithoutExt}.mov`;
-  const webmPath = `${basePathWithoutExt}.webm`;
+  const basePathWithoutExt = basePath.replace(/\.(mp4|webm|mov)$/, '');
+  const mp4Path = `${basePathWithoutExt}.mp4`;
   
-  if (isIOS() || isSafari()) {
-    // iOS e Safari: apenas MP4 para máxima compatibilidade
-    return [{ src: movPath, type: 'video/quicktime' }];
-  }
-  
-  // Outros navegadores: MP4 principal + WebM para otimização
-  return [
-    { src: movPath, type: 'video/quicktime' },
-    { src: webmPath, type: 'video/webm' }
-  ];
+  // Retorna apenas MP4 pois é o único formato que queremos usar
+  return [{ src: mp4Path, type: 'video/mp4' }];
 };

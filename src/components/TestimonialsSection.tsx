@@ -35,28 +35,28 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 0,
-      videoSrc: "/video_depoimento/depoimento_jeferson.mov",
+      videoSrc: "/video_depoimento/depoimento_jeferson.mp4",
       name: "Jeferson",
       title: "Cliente Satisfeito",
       description: "Experiência transformadora com o visagismo"
     },
     {
       id: 1,
-      videoSrc: "/video_depoimento/depoimento_natalia.mov",
+      videoSrc: "/video_depoimento/depoimento_natalia.mp4",
       name: "Natalia",
       title: "Cliente Satisfeita",
       description: "Atendimento personalizado e resultado incrível"
     },
     {
       id: 2,
-      videoSrc: "/video_depoimento/depoimento_gisele.mov",
+      videoSrc: "/video_depoimento/depoimento_gisele.mp4",
       name: "Gisele",
       title: "Cliente Satisfeita",
       description: "Profissionalismo e cuidado em cada detalhe"
     },
     {
       id: 3,
-      videoSrc: "/video_depoimento/depoimento_camila.mov",
+      videoSrc: "/video_depoimento/depoimento_camila.mp4",
       name: "Camila",
       title: "Cliente Satisfeita",
       description: "Transformação completa da minha imagem"
