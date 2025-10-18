@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => ({
     middlewareMode: false,
     fs: {
       strict: false
+    },
+    // Headers específicos para vídeos durante desenvolvimento
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'credentialless',
+      'Cross-Origin-Opener-Policy': 'same-origin'
     }
   },
   plugins: [react()],
@@ -20,7 +25,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   // Configurações para assets grandes
-  assetsInclude: ['**/*.mp4'],
+  assetsInclude: ['**/*.mp4', '**/*.webm'],
   build: {
     rollupOptions: {
       onwarn(warning, warn) {
@@ -28,6 +33,15 @@ export default defineConfig(({ mode }) => ({
         if (warning.code === 'POSTCSS_PLUGIN_WARNING') return;
         if (warning.message && warning.message.includes('did not pass the `from` option')) return;
         warn(warning);
+      },
+      output: {
+        // Configurações específicas para assets de vídeo
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.mp4')) {
+            return 'video_depoimento/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
       }
     },
     // Aumenta o limite de tamanho para assets grandes

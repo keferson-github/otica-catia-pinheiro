@@ -277,6 +277,7 @@ const TestimonialsSection = () => {
                   webkit-playsinline="true"
                   preload="metadata"
                   controls={isIOSSafari()} // Mostrar controles nativos no iOS Safari para melhor compatibilidade
+                  crossOrigin="anonymous" // Adiciona suporte para CORS
                   onLoadedData={() => {
                     console.log(`Vídeo ${testimonial.name} carregado com sucesso`);
                   }}
@@ -302,11 +303,26 @@ const TestimonialsSection = () => {
                   }}
                   onError={(e) => {
                     console.error(`Erro ao carregar vídeo ${testimonial.name}:`, e);
+                    console.error('Detalhes do erro:', {
+                      error: e.currentTarget.error,
+                      networkState: e.currentTarget.networkState,
+                      readyState: e.currentTarget.readyState,
+                      src: e.currentTarget.currentSrc
+                    });
                   }}
                   onEnded={() => setVideoStates(prev => ({
                     ...prev,
                     [testimonial.id]: { ...prev[testimonial.id], isPlaying: false }
                   }))}
+                  onCanPlay={() => {
+                    console.log(`Vídeo ${testimonial.name} pronto para reprodução`);
+                  }}
+                  onWaiting={() => {
+                    console.log(`Vídeo ${testimonial.name} aguardando dados...`);
+                  }}
+                  onStalled={() => {
+                    console.warn(`Vídeo ${testimonial.name} travou durante o carregamento`);
+                  }}
                 >
                   {/* Vídeo MP4 para compatibilidade universal */}
                   <source src={testimonial.videoSrc} type="video/mp4" />
@@ -473,6 +489,7 @@ const TestimonialsSection = () => {
                       webkit-playsinline="true"
                       preload="metadata"
                       controls={isIOSSafari()}
+                      crossOrigin="anonymous" // Adiciona suporte para CORS
                       onLoadedData={() => {
                         console.log(`Vídeo ${testimonial.name} carregado com sucesso`);
                       }}
@@ -498,6 +515,12 @@ const TestimonialsSection = () => {
                       }}
                       onError={(e) => {
                         console.error(`Erro ao carregar vídeo ${testimonial.name}:`, e);
+                        console.error('Detalhes do erro:', {
+                          error: e.currentTarget.error,
+                          networkState: e.currentTarget.networkState,
+                          readyState: e.currentTarget.readyState,
+                          src: e.currentTarget.currentSrc
+                        });
                       }}
                       onEnded={() => {
                         setVideoStates(prev => ({
@@ -507,6 +530,15 @@ const TestimonialsSection = () => {
                             isPlaying: false 
                           }
                         }));
+                      }}
+                      onCanPlay={() => {
+                        console.log(`Vídeo ${testimonial.name} pronto para reprodução`);
+                      }}
+                      onWaiting={() => {
+                        console.log(`Vídeo ${testimonial.name} aguardando dados...`);
+                      }}
+                      onStalled={() => {
+                        console.warn(`Vídeo ${testimonial.name} travou durante o carregamento`);
                       }}
                     >
                       <source src={testimonial.videoSrc} type="video/mp4" />

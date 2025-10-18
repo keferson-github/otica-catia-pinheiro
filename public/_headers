@@ -1,0 +1,19 @@
+# Headers para Netlify/Vercel - Configuração de MIME types e CORS para vídeos
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Configurações específicas para vídeos
+/video_depoimento/*
+  Content-Type: video/mp4
+  Cache-Control: public, max-age=31536000
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Range, Content-Range, Content-Length, Content-Type
+
+# Configurações para arquivos MP4 em geral
+*.mp4
+  Content-Type: video/mp4
+  Accept-Ranges: bytes
+  Cache-Control: public, max-age=31536000
