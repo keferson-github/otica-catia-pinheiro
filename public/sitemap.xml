@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://oticacatiapinheiro.com.br/</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://oticacatiapinheiro.com.br/img/nova-imagem-sobre-cap.webp</image:loc>
+      <image:title>Cátia Pinheiro - Especialista em Visagismo Óptico</image:title>
+      <image:caption>Especialista em visagismo óptico em Caieiras oferecendo consultoria personalizada para óculos</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://oticacatiapinheiro.com.br/img/nova-foto-hero-landing-page-cap.webp</image:loc>
+      <image:title>Ótica Cátia Pinheiro - Visagismo e Óculos Personalizados</image:title>
+      <image:caption>Consultoria em visagismo óptico e óculos personalizados em Caieiras</image:caption>
+    </image:image>
+  </url>
+</urlset>

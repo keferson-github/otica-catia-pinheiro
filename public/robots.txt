@@ -12,3 +12,9 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://oticacatiapinheiro.com.br/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
