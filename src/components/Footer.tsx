@@ -152,7 +152,8 @@ const Footer = () => {
           >
             <Instagram className="w-6 h-6 text-muted-foreground group-hover:text-primary-foreground transition-colors duration-300" />
           </motion.a>
-          <motion.a 
+          {/* Facebook - Temporariamente oculto */}
+          {/* <motion.a 
             href="#" 
             className="group w-14 h-14 bg-card/50 hover:bg-secondary rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 shadow-lg hover:shadow-2xl hover:shadow-secondary/20" 
             aria-label="Facebook da Ótica Cátia Pinheiro"
@@ -165,7 +166,7 @@ const Footer = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Facebook className="w-6 h-6 text-muted-foreground group-hover:text-secondary-foreground transition-colors duration-300" />
-          </motion.a>
+          </motion.a> */}
         </motion.div>
         
         {/* Bottom */}
