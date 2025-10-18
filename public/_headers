@@ -1,6 +1,5 @@
 # Headers para Netlify/Vercel - Configuração de MIME types e CORS para vídeos
 /*
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
 

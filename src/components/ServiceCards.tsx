@@ -273,7 +273,7 @@ const ServiceCards = () => {
                 
                 {/* CTA Button */}
                 <motion.a 
-                  href="https://wa.me/5511997712138?text=Olá! Gostaria de solicitar óculos através da consultoria de visagismo." 
+                  href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de agendar um *Atendimento Presencial*!" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="modern-cta-button"
@@ -403,7 +403,7 @@ const ServiceCards = () => {
           >
             <span className="text-sm text-muted-foreground">Tem dúvidas?</span>
             <motion.a 
-              href="https://wa.me/5511997712138?text=Olá! Tenho dúvidas sobre os serviços." 
+              href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de tirar algumas dúvidas!" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-sm font-semibold text-accent-gold hover:text-accent-gold-dark transition-colors"

@@ -177,7 +177,7 @@ const Hero = () => {
             >
               {/* Botão Falar com Expert - APENAS MOBILE (vertical) */}
               <motion.a 
-                href="https://wa.me/5511997712138?text=Olá! Gostaria de falar com um expert em óculos." 
+                href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de tirar algumas dúvidas!" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="lg:hidden bg-black text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 flex items-center justify-between group mx-auto text-sm sm:text-base w-64 sm:w-64 md:w-auto shadow-2xl hover:shadow-2xl relative"
@@ -203,7 +203,7 @@ const Hero = () => {
                 variants={fadeInUp}
                 custom={9}
               >
-                <span className="flex-1 text-center md:text-left">Explorar produtos</span>
+                <span className="flex-1 text-center md:text-left">Veja Como Funciona</span>
                 <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center absolute right-3 md:relative md:right-auto md:ml-4">
                   <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5-5 5M6 12h12" />
@@ -213,7 +213,7 @@ const Hero = () => {
 
               {/* Botão Falar com Expert - APENAS DESKTOP (horizontal) */}
               <motion.a 
-                href="https://wa.me/5511997712138?text=Olá! Gostaria de falar com um expert em óculos." 
+                href="https://wa.me/5511997712138?text=Olá, vim pelo site da Cátia Pinheiro, e gostaria de tirar algumas dúvidas!" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hidden lg:flex bg-black text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-medium hover:bg-accent-gold transition-all duration-300 items-center justify-between group text-sm sm:text-base w-64 sm:w-64 md:w-auto shadow-2xl hover:shadow-2xl relative"
@@ -222,7 +222,7 @@ const Hero = () => {
                 variants={fadeInUp}
                 custom={10}
               >
-                <span className="flex-1 text-center md:text-left">Falar com Expert</span>
+                <span className="flex-1 text-center md:text-left">Dúvidas? Fale Conosco!</span>
                 <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center absolute right-3 md:relative md:right-auto md:ml-4">
                   <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5-5 5M6 12h12" />

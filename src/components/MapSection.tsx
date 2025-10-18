@@ -3,6 +3,63 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useScrollTrigger } from "@/hooks/useScrollTrigger";
 import MapPin from "lucide-react/dist/esm/icons/map-pin";
 
+// Componente Mapa usando imagem SVG clicável
+function Mapa() {
+  // Função para abrir Google Maps em nova aba
+  const handleMapClick = () => {
+    const googleMapsUrl = "https://www.google.com/maps/place/R.+Jo%C3%A3o+Dartora,+321+-+Centro,+Caieiras+-+SP,+07700-005/@-23.360191,-46.7415005,17z";
+    window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <div className="w-full h-[420px] rounded-2xl overflow-hidden shadow-xl relative group">
+      {/* Imagem clicável do mapa (WebP com fallback para SVG) */}
+      <div 
+        className="w-full h-full bg-gray-50 cursor-pointer transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl"
+        onClick={handleMapClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleMapClick();
+          }
+        }}
+        aria-label="Clique para abrir localização no Google Maps"
+      >
+        <picture className="block w-full h-full">
+          <source srcSet="/img/google-maps-cap.webp" type="image/webp" />
+          <img 
+            src="/img/mapa-catia-pinheiro-otica.svg" 
+            alt="Mapa estático do Google - Cátia Pinheiro Ótica e Visagismo"
+            className="w-full h-full object-cover object-center transition-transform duration-300"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        
+        {/* Overlay com indicação de clique */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+            <div className="flex items-center space-x-3 text-gray-800">
+              <MapPin className="w-5 h-5 text-red-600" />
+              <span className="font-medium">Clique para abrir no Google Maps</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Indicador permanente de localização */}
+        <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg">
+          <div className="flex items-center space-x-2 text-sm text-gray-700">
+            <MapPin className="w-4 h-4 text-red-600" />
+            <span>Cátia Pinheiro Ótica e Visagismo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const MapSection = () => {
   // Refs para efeitos parallax
   const sectionRef = useRef<HTMLElement>(null);
@@ -132,32 +189,17 @@ const MapSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Mapa */}
+        {/* Mapa usando o componente Mapa */}
         <motion.div 
           className="elegant-card p-2 overflow-hidden"
           variants={itemVariants}
           whileHover={{ 
-            scale: 1.02,
+            scale: 1.01,
             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
           }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
-          <div className="relative w-full h-96 md:h-[450px] rounded-xl overflow-hidden shadow-inner">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d117208.7958057053!2d-46.823902094093086!3d-23.360169531003997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x94cee48696c9b63f%3A0x4826fc2a94b77bc7!2sR.%20Jo%C3%A3o%20D%C3%A1rtora%2C%20321%20-%20Centro%2C%20Caieiras%20-%20SP%2C%2007700-005!3m2!1d-23.360191099999998!2d-46.7415005!5e0!3m2!1spt-BR!2sbr!4v1758668087493!5m2!1spt-BR!2sbr"
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localização da Ótica Cátia Pinheiro"
-              className="rounded-xl"
-            />
-            
-            {/* Overlay sutil para melhor integração visual */}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-xl" />
-          </div>
+          <Mapa />
         </motion.div>
 
         {/* Call to action */}
