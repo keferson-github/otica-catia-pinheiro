@@ -337,7 +337,7 @@ const ServiceCards = () => {
                   variants={itemVariants}
                 >
                   <p className="text-sm font-medium text-primary/70 mb-1">Investimento</p>
-                  <p className="text-4xl font-bold text-primary">R$ 390</p>
+                  <p className="text-4xl font-bold text-primary">R$ 419,50</p>
                 </motion.div>
                 
                 {/* Features */}
@@ -369,7 +369,7 @@ const ServiceCards = () => {
                 
                 {/* CTA Button */}
                 <motion.a 
-                  href="https://www.asaas.com/c/nc1a7e89z2o00z1s" 
+                  href="https://www.asaas.com/c/gzkul60nxsi4szzf" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="modern-cta-button"

@@ -137,7 +137,9 @@ const Footer = () => {
           variants={containerVariants}
         >
           <motion.a 
-            href="#" 
+            href="https://www.instagram.com/oticacatiapinheiro?utm_source=qr" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="group w-14 h-14 bg-card/50 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 shadow-lg hover:shadow-2xl hover:shadow-primary/20" 
             aria-label="Instagram da Ótica Cátia Pinheiro"
             variants={socialVariants}
