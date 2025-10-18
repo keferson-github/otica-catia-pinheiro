@@ -30,7 +30,7 @@ export const supportsMP4 = (): boolean => {
 export const getBestVideoFormat = (basePath: string): string => {
   if (isIOS() || isSafari()) {
     // iOS e Safari preferem MP4
-    return basePath.replace('.webm', '.mp4');
+    return basePath.replace('.webm', '.mov');
   }
   
   // Outros navegadores podem usar WebM (mais eficiente)
@@ -45,11 +45,11 @@ export const getBestVideoFormat = (basePath: string): string => {
 export const getVideoSources = (basePath: string) => {
   // Remove extensão para gerar ambos os formatos
   const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
-  const mp4Path = `${basePathWithoutExt}.mp4`;
+  const movPath = `${basePathWithoutExt}.mov`;
   const webmPath = `${basePathWithoutExt}.webm`;
   
   return [
-    { src: mp4Path, type: 'video/mp4' },
+    { src: movPath, type: 'video/quicktime' },
     { src: webmPath, type: 'video/webm' }
   ];
 };
@@ -61,17 +61,17 @@ export const getVideoSources = (basePath: string) => {
  */
 export const getOptimizedVideoSources = (basePath: string) => {
   const basePathWithoutExt = basePath.replace(/\.(mp4|webm)$/, '');
-  const mp4Path = `${basePathWithoutExt}.mp4`;
+  const movPath = `${basePathWithoutExt}.mov`;
   const webmPath = `${basePathWithoutExt}.webm`;
   
   if (isIOS() || isSafari()) {
     // iOS e Safari: apenas MP4 para máxima compatibilidade
-    return [{ src: mp4Path, type: 'video/mp4' }];
+    return [{ src: movPath, type: 'video/quicktime' }];
   }
   
   // Outros navegadores: MP4 principal + WebM para otimização
   return [
-    { src: mp4Path, type: 'video/mp4' },
+    { src: movPath, type: 'video/quicktime' },
     { src: webmPath, type: 'video/webm' }
   ];
 };
